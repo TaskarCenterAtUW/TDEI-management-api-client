@@ -18,10 +18,10 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { OrgRoles } from '../models';
 import { Register } from '../models';
+import { RegisterResponse } from '../models';
 import { Response } from '../models';
 import { RoleDetails } from '../models';
-import { Roles } from '../models';
-import { User } from '../models';
+import { RoleResponse } from '../models';
 /**
  * UserManagementApi - axios parameter creator
  * @export
@@ -285,7 +285,7 @@ export const UserManagementApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registerUser(body: Register, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<User>>> {
+        async registerUser(body: Register, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RegisterResponse>>> {
             const localVarAxiosArgs = await UserManagementApiAxiosParamCreator(configuration).registerUser(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -312,7 +312,7 @@ export const UserManagementApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async roles(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Roles>>>> {
+        async roles(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RoleResponse>>> {
             const localVarAxiosArgs = await UserManagementApiAxiosParamCreator(configuration).roles(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -355,7 +355,7 @@ export const UserManagementApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async registerUser(body: Register, options?: AxiosRequestConfig): Promise<AxiosResponse<User>> {
+        async registerUser(body: Register, options?: AxiosRequestConfig): Promise<AxiosResponse<RegisterResponse>> {
             return UserManagementApiFp(configuration).registerUser(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -374,7 +374,7 @@ export const UserManagementApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async roles(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Roles>>> {
+        async roles(options?: AxiosRequestConfig): Promise<AxiosResponse<RoleResponse>> {
             return UserManagementApiFp(configuration).roles(options).then((request) => request(axios, basePath));
         },
     };
@@ -417,7 +417,7 @@ export class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    public async registerUser(body: Register, options?: AxiosRequestConfig) : Promise<AxiosResponse<User>> {
+    public async registerUser(body: Register, options?: AxiosRequestConfig) : Promise<AxiosResponse<RegisterResponse>> {
         return UserManagementApiFp(this.configuration).registerUser(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -438,7 +438,7 @@ export class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    public async roles(options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Roles>>> {
+    public async roles(options?: AxiosRequestConfig) : Promise<AxiosResponse<RoleResponse>> {
         return UserManagementApiFp(this.configuration).roles(options).then((request) => request(this.axios, this.basePath));
     }
 }

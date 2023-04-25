@@ -72,6 +72,54 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Activates/Deactives the organization.
+         * @summary Activates/Deactives the organization.
+         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteOrganization: async (orgId: string, status: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'orgId' is not null or undefined
+            if (orgId === null || orgId === undefined) {
+                throw new RequiredError('orgId','Required parameter orgId was null or undefined when calling deleteOrganization.');
+            }
+            // verify required parameter 'status' is not null or undefined
+            if (status === null || status === undefined) {
+                throw new RequiredError('status','Required parameter status was null or undefined when calling deleteOrganization.');
+            }
+            const localVarPath = `/api/v1/organization/{orgId}/active/{status}`
+                .replace(`{${"orgId"}}`, encodeURIComponent(String(orgId)))
+                .replace(`{${"status"}}`, encodeURIComponent(String(status)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication AuthorizationToken required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Gets the organizations in the TDEI system .
          * @summary Gets the organizations in the TDEI system 
          * @param {string} [tdei_org_id] Search by organization Id.
@@ -190,54 +238,6 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
-         * Activates/Deactives the organization.
-         * @summary Activates/Deactives the organization.
-         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setServiceStatus: async (orgId: string, status: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'orgId' is not null or undefined
-            if (orgId === null || orgId === undefined) {
-                throw new RequiredError('orgId','Required parameter orgId was null or undefined when calling setServiceStatus.');
-            }
-            // verify required parameter 'status' is not null or undefined
-            if (status === null || status === undefined) {
-                throw new RequiredError('status','Required parameter status was null or undefined when calling setServiceStatus.');
-            }
-            const localVarPath = `/api/v1/organization/{orgId}/active/{status}`
-                .replace(`{${"orgId"}}`, encodeURIComponent(String(orgId)))
-                .replace(`{${"status"}}`, encodeURIComponent(String(status)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication AuthorizationToken required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Updates an organization in the TDEI system.  Returns success if updated.
          * @summary Updates an organization in the TDEI system 
          * @param {Organization} body 
@@ -306,6 +306,21 @@ export const OrganizationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Activates/Deactives the organization.
+         * @summary Activates/Deactives the organization.
+         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).deleteOrganization(orgId, status, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Gets the organizations in the TDEI system .
          * @summary Gets the organizations in the TDEI system 
          * @param {string} [tdei_org_id] Search by organization Id.
@@ -335,21 +350,6 @@ export const OrganizationApiFp = function(configuration?: Configuration) {
          */
         async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<OrgUser>>> {
             const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Activates/Deactives the organization.
-         * @summary Activates/Deactives the organization.
-         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async setServiceStatus(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).setServiceStatus(orgId, status, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -389,6 +389,17 @@ export const OrganizationApiFactory = function (configuration?: Configuration, b
             return OrganizationApiFp(configuration).createOrganization(body, options).then((request) => request(axios, basePath));
         },
         /**
+         * Activates/Deactives the organization.
+         * @summary Activates/Deactives the organization.
+         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return OrganizationApiFp(configuration).deleteOrganization(orgId, status, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Gets the organizations in the TDEI system .
          * @summary Gets the organizations in the TDEI system 
          * @param {string} [tdei_org_id] Search by organization Id.
@@ -414,17 +425,6 @@ export const OrganizationApiFactory = function (configuration?: Configuration, b
          */
         async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrgUser>> {
             return OrganizationApiFp(configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Activates/Deactives the organization.
-         * @summary Activates/Deactives the organization.
-         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async setServiceStatus(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return OrganizationApiFp(configuration).setServiceStatus(orgId, status, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates an organization in the TDEI system.  Returns success if updated.
@@ -458,6 +458,18 @@ export class OrganizationApi extends BaseAPI {
         return OrganizationApiFp(this.configuration).createOrganization(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
+     * Activates/Deactives the organization.
+     * @summary Activates/Deactives the organization.
+     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrganizationApi
+     */
+    public async deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return OrganizationApiFp(this.configuration).deleteOrganization(orgId, status, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
      * Gets the organizations in the TDEI system .
      * @summary Gets the organizations in the TDEI system 
      * @param {string} [tdei_org_id] Search by organization Id.
@@ -485,18 +497,6 @@ export class OrganizationApi extends BaseAPI {
      */
     public async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<OrgUser>> {
         return OrganizationApiFp(this.configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Activates/Deactives the organization.
-     * @summary Activates/Deactives the organization.
-     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrganizationApi
-     */
-    public async setServiceStatus(orgId: string, status: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return OrganizationApiFp(this.configuration).setServiceStatus(orgId, status, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Updates an organization in the TDEI system.  Returns success if updated.

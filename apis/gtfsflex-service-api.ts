@@ -71,6 +71,60 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
+         * Activates/Deactives the service.
+         * @summary Activates/Deactives the service.
+         * @param {string} orgId Owner organization id.
+         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteService: async (orgId: string, serviceId: string, status: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'orgId' is not null or undefined
+            if (orgId === null || orgId === undefined) {
+                throw new RequiredError('orgId','Required parameter orgId was null or undefined when calling deleteService.');
+            }
+            // verify required parameter 'serviceId' is not null or undefined
+            if (serviceId === null || serviceId === undefined) {
+                throw new RequiredError('serviceId','Required parameter serviceId was null or undefined when calling deleteService.');
+            }
+            // verify required parameter 'status' is not null or undefined
+            if (status === null || status === undefined) {
+                throw new RequiredError('status','Required parameter status was null or undefined when calling deleteService.');
+            }
+            const localVarPath = `/api/v1/service/{orgId}/{serviceId}/active/{status}`
+                .replace(`{${"orgId"}}`, encodeURIComponent(String(orgId)))
+                .replace(`{${"serviceId"}}`, encodeURIComponent(String(serviceId)))
+                .replace(`{${"status"}}`, encodeURIComponent(String(status)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication AuthorizationToken required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Gets the GTFS Flex services in the TDEI system .
          * @summary Gets the GTFS Flex services in the TDEI system 
          * @param {string} [tdei_service_id] Search by service Id.
@@ -119,60 +173,6 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
             if (page_size !== undefined) {
                 localVarQueryParameter['page_size'] = page_size;
             }
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setServiceStatus: async (orgId: string, serviceId: string, status: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'orgId' is not null or undefined
-            if (orgId === null || orgId === undefined) {
-                throw new RequiredError('orgId','Required parameter orgId was null or undefined when calling setServiceStatus.');
-            }
-            // verify required parameter 'serviceId' is not null or undefined
-            if (serviceId === null || serviceId === undefined) {
-                throw new RequiredError('serviceId','Required parameter serviceId was null or undefined when calling setServiceStatus.');
-            }
-            // verify required parameter 'status' is not null or undefined
-            if (status === null || status === undefined) {
-                throw new RequiredError('status','Required parameter status was null or undefined when calling setServiceStatus.');
-            }
-            const localVarPath = `/api/v1/service/{orgId}/{serviceId}/active/{status}`
-                .replace(`{${"orgId"}}`, encodeURIComponent(String(orgId)))
-                .replace(`{${"serviceId"}}`, encodeURIComponent(String(serviceId)))
-                .replace(`{${"status"}}`, encodeURIComponent(String(status)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication AuthorizationToken required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -265,6 +265,22 @@ export const GTFSFlexServiceApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Activates/Deactives the service.
+         * @summary Activates/Deactives the service.
+         * @param {string} orgId Owner organization id.
+         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).deleteService(orgId, serviceId, status, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Gets the GTFS Flex services in the TDEI system .
          * @summary Gets the GTFS Flex services in the TDEI system 
          * @param {string} [tdei_service_id] Search by service Id.
@@ -278,22 +294,6 @@ export const GTFSFlexServiceApiFp = function(configuration?: Configuration) {
          */
         async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Service>>> {
             const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async setServiceStatus(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).setServiceStatus(orgId, serviceId, status, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -334,6 +334,18 @@ export const GTFSFlexServiceApiFactory = function (configuration?: Configuration
             return GTFSFlexServiceApiFp(configuration).createService(body, options).then((request) => request(axios, basePath));
         },
         /**
+         * Activates/Deactives the service.
+         * @summary Activates/Deactives the service.
+         * @param {string} orgId Owner organization id.
+         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return GTFSFlexServiceApiFp(configuration).deleteService(orgId, serviceId, status, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Gets the GTFS Flex services in the TDEI system .
          * @summary Gets the GTFS Flex services in the TDEI system 
          * @param {string} [tdei_service_id] Search by service Id.
@@ -347,18 +359,6 @@ export const GTFSFlexServiceApiFactory = function (configuration?: Configuration
          */
         async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Service>> {
             return GTFSFlexServiceApiFp(configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async setServiceStatus(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return GTFSFlexServiceApiFp(configuration).setServiceStatus(orgId, serviceId, status, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a GTFS flex service in the TDEI system.
@@ -393,6 +393,19 @@ export class GTFSFlexServiceApi extends BaseAPI {
         return GTFSFlexServiceApiFp(this.configuration).createService(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
+     * Activates/Deactives the service.
+     * @summary Activates/Deactives the service.
+     * @param {string} orgId Owner organization id.
+     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate service.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GTFSFlexServiceApi
+     */
+    public async deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return GTFSFlexServiceApiFp(this.configuration).deleteService(orgId, serviceId, status, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system 
      * @param {string} [tdei_service_id] Search by service Id.
@@ -407,19 +420,6 @@ export class GTFSFlexServiceApi extends BaseAPI {
      */
     public async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Service>> {
         return GTFSFlexServiceApiFp(this.configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Activates/Deactives the service.
-     * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
-     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate service.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GTFSFlexServiceApi
-     */
-    public async setServiceStatus(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return GTFSFlexServiceApiFp(this.configuration).setServiceStatus(orgId, serviceId, status, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Updates a GTFS flex service in the TDEI system.
