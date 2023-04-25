@@ -30,6 +30,15 @@ export declare const OrganizationApiAxiosParamCreator: (configuration?: Configur
      */
     createOrganization: (body: Organization, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
+     * Activates/Deactives the organization.
+     * @summary Activates/Deactives the organization.
+     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOrganization: (orgId: string, status: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
      * Gets the organizations in the TDEI system .
      * @summary Gets the organizations in the TDEI system
      * @param {string} [tdei_org_id] Search by organization Id.
@@ -53,15 +62,6 @@ export declare const OrganizationApiAxiosParamCreator: (configuration?: Configur
      */
     getOrganizationUsers: (orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
-     * Activates/Deactives the organization.
-     * @summary Activates/Deactives the organization.
-     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setServiceStatus: (orgId: string, status: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
-    /**
      * Updates an organization in the TDEI system.  Returns success if updated.
      * @summary Updates an organization in the TDEI system
      * @param {Organization} body
@@ -83,6 +83,15 @@ export declare const OrganizationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     createOrganization(body: Organization, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Response>>>;
+    /**
+     * Activates/Deactives the organization.
+     * @summary Activates/Deactives the organization.
+     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
     /**
      * Gets the organizations in the TDEI system .
      * @summary Gets the organizations in the TDEI system
@@ -107,15 +116,6 @@ export declare const OrganizationApiFp: (configuration?: Configuration) => {
      */
     getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<OrgUser>>>;
     /**
-     * Activates/Deactives the organization.
-     * @summary Activates/Deactives the organization.
-     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setServiceStatus(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
-    /**
      * Updates an organization in the TDEI system.  Returns success if updated.
      * @summary Updates an organization in the TDEI system
      * @param {Organization} body
@@ -137,6 +137,15 @@ export declare const OrganizationApiFactory: (configuration?: Configuration, bas
      * @throws {RequiredError}
      */
     createOrganization(body: Organization, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>>;
+    /**
+     * Activates/Deactives the organization.
+     * @summary Activates/Deactives the organization.
+     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Gets the organizations in the TDEI system .
      * @summary Gets the organizations in the TDEI system
@@ -160,15 +169,6 @@ export declare const OrganizationApiFactory: (configuration?: Configuration, bas
      * @throws {RequiredError}
      */
     getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrgUser>>;
-    /**
-     * Activates/Deactives the organization.
-     * @summary Activates/Deactives the organization.
-     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setServiceStatus(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Updates an organization in the TDEI system.  Returns success if updated.
      * @summary Updates an organization in the TDEI system
@@ -195,6 +195,16 @@ export declare class OrganizationApi extends BaseAPI {
      */
     createOrganization(body: Organization, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>>;
     /**
+     * Activates/Deactives the organization.
+     * @summary Activates/Deactives the organization.
+     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrganizationApi
+     */
+    deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    /**
      * Gets the organizations in the TDEI system .
      * @summary Gets the organizations in the TDEI system
      * @param {string} [tdei_org_id] Search by organization Id.
@@ -219,16 +229,6 @@ export declare class OrganizationApi extends BaseAPI {
      * @memberof OrganizationApi
      */
     getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrgUser>>;
-    /**
-     * Activates/Deactives the organization.
-     * @summary Activates/Deactives the organization.
-     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrganizationApi
-     */
-    setServiceStatus(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Updates an organization in the TDEI system.  Returns success if updated.
      * @summary Updates an organization in the TDEI system

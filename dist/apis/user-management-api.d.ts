@@ -14,10 +14,10 @@ import { Configuration } from '../configuration';
 import { RequestArgs, BaseAPI } from '../base';
 import { OrgRoles } from '../models';
 import { Register } from '../models';
+import { RegisterResponse } from '../models';
 import { Response } from '../models';
 import { RoleDetails } from '../models';
-import { Roles } from '../models';
-import { User } from '../models';
+import { RoleResponse } from '../models';
 /**
  * UserManagementApi - axios parameter creator
  * @export
@@ -91,7 +91,7 @@ export declare const UserManagementApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    registerUser(body: Register, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<User>>>;
+    registerUser(body: Register, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RegisterResponse>>>;
     /**
      * Revokes the user permissions.
      * @summary Revokes the user permissions
@@ -106,7 +106,7 @@ export declare const UserManagementApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    roles(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Roles>>>>;
+    roles(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RoleResponse>>>;
 };
 /**
  * UserManagementApi - factory interface
@@ -136,7 +136,7 @@ export declare const UserManagementApiFactory: (configuration?: Configuration, b
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    registerUser(body: Register, options?: AxiosRequestConfig): Promise<AxiosResponse<User>>;
+    registerUser(body: Register, options?: AxiosRequestConfig): Promise<AxiosResponse<RegisterResponse>>;
     /**
      * Revokes the user permissions.
      * @summary Revokes the user permissions
@@ -151,7 +151,7 @@ export declare const UserManagementApiFactory: (configuration?: Configuration, b
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    roles(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Roles>>>;
+    roles(options?: AxiosRequestConfig): Promise<AxiosResponse<RoleResponse>>;
 };
 /**
  * UserManagementApi - object-oriented interface
@@ -186,7 +186,7 @@ export declare class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    registerUser(body: Register, options?: AxiosRequestConfig): Promise<AxiosResponse<User>>;
+    registerUser(body: Register, options?: AxiosRequestConfig): Promise<AxiosResponse<RegisterResponse>>;
     /**
      * Revokes the user permissions.
      * @summary Revokes the user permissions
@@ -203,5 +203,5 @@ export declare class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    roles(options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Roles>>>;
+    roles(options?: AxiosRequestConfig): Promise<AxiosResponse<RoleResponse>>;
 }

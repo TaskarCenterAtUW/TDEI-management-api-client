@@ -29,6 +29,16 @@ export declare const GTFSFlexServiceApiAxiosParamCreator: (configuration?: Confi
      */
     createService: (body: Service, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
+     * Activates/Deactives the service.
+     * @summary Activates/Deactives the service.
+     * @param {string} orgId Owner organization id.
+     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate service.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteService: (orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
@@ -41,16 +51,6 @@ export declare const GTFSFlexServiceApiAxiosParamCreator: (configuration?: Confi
      * @throws {RequiredError}
      */
     getService: (tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
-    /**
-     * Activates/Deactives the service.
-     * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
-     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate service.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setServiceStatus: (orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
@@ -75,6 +75,16 @@ export declare const GTFSFlexServiceApiFp: (configuration?: Configuration) => {
      */
     createService(body: Service, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Response>>>;
     /**
+     * Activates/Deactives the service.
+     * @summary Activates/Deactives the service.
+     * @param {string} orgId Owner organization id.
+     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate service.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
+    /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
@@ -87,16 +97,6 @@ export declare const GTFSFlexServiceApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Service>>>;
-    /**
-     * Activates/Deactives the service.
-     * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
-     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate service.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setServiceStatus(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
@@ -121,6 +121,16 @@ export declare const GTFSFlexServiceApiFactory: (configuration?: Configuration, 
      */
     createService(body: Service, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>>;
     /**
+     * Activates/Deactives the service.
+     * @summary Activates/Deactives the service.
+     * @param {string} orgId Owner organization id.
+     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate service.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
@@ -133,16 +143,6 @@ export declare const GTFSFlexServiceApiFactory: (configuration?: Configuration, 
      * @throws {RequiredError}
      */
     getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Service>>;
-    /**
-     * Activates/Deactives the service.
-     * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
-     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate service.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setServiceStatus(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
@@ -170,6 +170,17 @@ export declare class GTFSFlexServiceApi extends BaseAPI {
      */
     createService(body: Service, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>>;
     /**
+     * Activates/Deactives the service.
+     * @summary Activates/Deactives the service.
+     * @param {string} orgId Owner organization id.
+     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate service.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GTFSFlexServiceApi
+     */
+    deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
@@ -183,17 +194,6 @@ export declare class GTFSFlexServiceApi extends BaseAPI {
      * @memberof GTFSFlexServiceApi
      */
     getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Service>>;
-    /**
-     * Activates/Deactives the service.
-     * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
-     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate service.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GTFSFlexServiceApi
-     */
-    setServiceStatus(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system

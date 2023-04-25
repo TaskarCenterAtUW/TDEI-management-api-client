@@ -131,6 +131,60 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
+         * Activates/Deactives the service.
+         * @summary Activates/Deactives the service.
+         * @param {string} orgId Owner organization id.
+         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteService: function (orgId, serviceId, status, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, query, key, key, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    // verify required parameter 'orgId' is not null or undefined
+                    if (orgId === null || orgId === undefined) {
+                        throw new base_1.RequiredError('orgId', 'Required parameter orgId was null or undefined when calling deleteService.');
+                    }
+                    // verify required parameter 'serviceId' is not null or undefined
+                    if (serviceId === null || serviceId === undefined) {
+                        throw new base_1.RequiredError('serviceId', 'Required parameter serviceId was null or undefined when calling deleteService.');
+                    }
+                    // verify required parameter 'status' is not null or undefined
+                    if (status === null || status === undefined) {
+                        throw new base_1.RequiredError('status', 'Required parameter status was null or undefined when calling deleteService.');
+                    }
+                    localVarPath = "/api/v1/service/{orgId}/{serviceId}/active/{status}"
+                        .replace("{" + "orgId" + "}", encodeURIComponent(String(orgId)))
+                        .replace("{" + "serviceId" + "}", encodeURIComponent(String(serviceId)))
+                        .replace("{" + "status" + "}", encodeURIComponent(String(status)));
+                    localVarUrlObj = new URL(localVarPath, 'https://example.com');
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
+                    }
+                    localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), options);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    query = new URLSearchParams(localVarUrlObj.search);
+                    for (key in localVarQueryParameter) {
+                        query.set(key, localVarQueryParameter[key]);
+                    }
+                    for (key in options.params) {
+                        query.set(key, options.params[key]);
+                    }
+                    localVarUrlObj.search = (new URLSearchParams(query)).toString();
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                    return [2 /*return*/, {
+                            url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                            options: localVarRequestOptions,
+                        }];
+                });
+            });
+        },
+        /**
          * Gets the GTFS Flex services in the TDEI system .
          * @summary Gets the GTFS Flex services in the TDEI system
          * @param {string} [tdei_service_id] Search by service Id.
@@ -174,60 +228,6 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
                     if (page_size !== undefined) {
                         localVarQueryParameter['page_size'] = page_size;
                     }
-                    query = new URLSearchParams(localVarUrlObj.search);
-                    for (key in localVarQueryParameter) {
-                        query.set(key, localVarQueryParameter[key]);
-                    }
-                    for (key in options.params) {
-                        query.set(key, options.params[key]);
-                    }
-                    localVarUrlObj.search = (new URLSearchParams(query)).toString();
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-                    return [2 /*return*/, {
-                            url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                            options: localVarRequestOptions,
-                        }];
-                });
-            });
-        },
-        /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setServiceStatus: function (orgId, serviceId, status, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, query, key, key, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    // verify required parameter 'orgId' is not null or undefined
-                    if (orgId === null || orgId === undefined) {
-                        throw new base_1.RequiredError('orgId', 'Required parameter orgId was null or undefined when calling setServiceStatus.');
-                    }
-                    // verify required parameter 'serviceId' is not null or undefined
-                    if (serviceId === null || serviceId === undefined) {
-                        throw new base_1.RequiredError('serviceId', 'Required parameter serviceId was null or undefined when calling setServiceStatus.');
-                    }
-                    // verify required parameter 'status' is not null or undefined
-                    if (status === null || status === undefined) {
-                        throw new base_1.RequiredError('status', 'Required parameter status was null or undefined when calling setServiceStatus.');
-                    }
-                    localVarPath = "/api/v1/service/{orgId}/{serviceId}/active/{status}"
-                        .replace("{" + "orgId" + "}", encodeURIComponent(String(orgId)))
-                        .replace("{" + "serviceId" + "}", encodeURIComponent(String(serviceId)))
-                        .replace("{" + "status" + "}", encodeURIComponent(String(status)));
-                    localVarUrlObj = new URL(localVarPath, 'https://example.com');
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
-                    }
-                    localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), options);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
                     query = new URLSearchParams(localVarUrlObj.search);
                     for (key in localVarQueryParameter) {
                         query.set(key, localVarQueryParameter[key]);
@@ -330,6 +330,33 @@ exports.GTFSFlexServiceApiFp = function (configuration) {
             });
         },
         /**
+         * Activates/Deactives the service.
+         * @summary Activates/Deactives the service.
+         * @param {string} orgId Owner organization id.
+         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteService: function (orgId, serviceId, status, options) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, exports.GTFSFlexServiceApiAxiosParamCreator(configuration).deleteService(orgId, serviceId, status, options)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, function (axios, basePath) {
+                                    if (axios === void 0) { axios = axios_1.default; }
+                                    if (basePath === void 0) { basePath = base_1.BASE_PATH; }
+                                    var axiosRequestArgs = __assign(__assign({}, localVarAxiosArgs.options), { url: basePath + localVarAxiosArgs.url });
+                                    return axios.request(axiosRequestArgs);
+                                }];
+                    }
+                });
+            });
+        },
+        /**
          * Gets the GTFS Flex services in the TDEI system .
          * @summary Gets the GTFS Flex services in the TDEI system
          * @param {string} [tdei_service_id] Search by service Id.
@@ -347,33 +374,6 @@ exports.GTFSFlexServiceApiFp = function (configuration) {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0: return [4 /*yield*/, exports.GTFSFlexServiceApiAxiosParamCreator(configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, function (axios, basePath) {
-                                    if (axios === void 0) { axios = axios_1.default; }
-                                    if (basePath === void 0) { basePath = base_1.BASE_PATH; }
-                                    var axiosRequestArgs = __assign(__assign({}, localVarAxiosArgs.options), { url: basePath + localVarAxiosArgs.url });
-                                    return axios.request(axiosRequestArgs);
-                                }];
-                    }
-                });
-            });
-        },
-        /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setServiceStatus: function (orgId, serviceId, status, options) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.GTFSFlexServiceApiAxiosParamCreator(configuration).setServiceStatus(orgId, serviceId, status, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -435,6 +435,22 @@ exports.GTFSFlexServiceApiFactory = function (configuration, basePath, axios) {
             });
         },
         /**
+         * Activates/Deactives the service.
+         * @summary Activates/Deactives the service.
+         * @param {string} orgId Owner organization id.
+         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteService: function (orgId, serviceId, status, options) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, exports.GTFSFlexServiceApiFp(configuration).deleteService(orgId, serviceId, status, options).then(function (request) { return request(axios, basePath); })];
+                });
+            });
+        },
+        /**
          * Gets the GTFS Flex services in the TDEI system .
          * @summary Gets the GTFS Flex services in the TDEI system
          * @param {string} [tdei_service_id] Search by service Id.
@@ -450,22 +466,6 @@ exports.GTFSFlexServiceApiFactory = function (configuration, basePath, axios) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     return [2 /*return*/, exports.GTFSFlexServiceApiFp(configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
-                });
-            });
-        },
-        /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setServiceStatus: function (orgId, serviceId, status, options) {
-            return __awaiter(this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.GTFSFlexServiceApiFp(configuration).setServiceStatus(orgId, serviceId, status, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -514,6 +514,24 @@ var GTFSFlexServiceApi = /** @class */ (function (_super) {
         });
     };
     /**
+     * Activates/Deactives the service.
+     * @summary Activates/Deactives the service.
+     * @param {string} orgId Owner organization id.
+     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate service.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GTFSFlexServiceApi
+     */
+    GTFSFlexServiceApi.prototype.deleteService = function (orgId, serviceId, status, options) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, exports.GTFSFlexServiceApiFp(this.configuration).deleteService(orgId, serviceId, status, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+            });
+        });
+    };
+    /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
@@ -531,24 +549,6 @@ var GTFSFlexServiceApi = /** @class */ (function (_super) {
             var _this = this;
             return __generator(this, function (_a) {
                 return [2 /*return*/, exports.GTFSFlexServiceApiFp(this.configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
-            });
-        });
-    };
-    /**
-     * Activates/Deactives the service.
-     * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
-     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate service.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GTFSFlexServiceApi
-     */
-    GTFSFlexServiceApi.prototype.setServiceStatus = function (orgId, serviceId, status, options) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                return [2 /*return*/, exports.GTFSFlexServiceApiFp(this.configuration).setServiceStatus(orgId, serviceId, status, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
