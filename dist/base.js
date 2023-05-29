@@ -17,7 +17,7 @@ exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = exports.B
 // Some imports not used depending on template conditions
 // @ts-ignore
 var axios_1 = require("axios");
-exports.BASE_PATH = "https://tdei-gateway-dev.azurewebsites.net".replace(/\/+$/, "");
+exports.BASE_PATH = "https://tdei-usermanagement-ts-stage.azurewebsites.net".replace(/\/+$/, "");
 /**
  *
  * @export

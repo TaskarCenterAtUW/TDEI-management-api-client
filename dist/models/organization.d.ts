@@ -1,6 +1,6 @@
 /**
- * TDEI Gateway API
- * This is an API for publishing data to the Transportation Data Equity Initiative (TDEI) data system. This API is intended for applications producing data for and consuming data from the TDEI system. This API supports publishing of GTFS-Pathways, GTFS-Flex v2 and OpenSidewalks data to the TDEI.
+ * TDEI Management API
+ * Management API, describes admin & user activities in the TDEI system.
  *
  * OpenAPI spec version: v0.1
  * Contact: placeholder_support@transequity.cs.washington.edu
@@ -9,28 +9,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Polygon } from './polygon';
 /**
- * Includes gtfs agency information and a tdei agency id. Necessary as gtfs agency id may not be unique across agencies.
+ * Describes an Organization.
  * @export
  * @interface Organization
  */
 export interface Organization {
     /**
-     * geo-json polygon.
-     * @type {any}
-     * @memberof Organization
-     */
-    polygon: any;
-    /**
-     * tdei-assigned organization id. Necessary to ensure that organization ids are unique. Represented as a UUID.
+     * Organization Id uniquely represented in the TDEI system. System generated.
      * @type {string}
      * @memberof Organization
      */
     tdei_org_id?: string;
     /**
-     * org_name name. For transit agencies, typically the agency name used in GTFS releases.
+     * Name of the organization.
      * @type {string}
      * @memberof Organization
      */
     org_name: string;
+    /**
+     * Phone of the organization for communication.
+     * @type {string}
+     * @memberof Organization
+     */
+    phone?: string;
+    /**
+     * Url of the transit organization.
+     * @type {string}
+     * @memberof Organization
+     */
+    url?: string;
+    /**
+     * Address of the transit organization.
+     * @type {string}
+     * @memberof Organization
+     */
+    address: string;
+    /**
+     *
+     * @type {Polygon}
+     * @memberof Organization
+     */
+    polygon?: Polygon;
 }
