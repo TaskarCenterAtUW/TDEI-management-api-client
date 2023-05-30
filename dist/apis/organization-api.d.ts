@@ -103,7 +103,7 @@ export declare const OrganizationApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<OrganizationList>>>;
+    getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<OrganizationList>>>>;
     /**
      * Gets the organization users in the TDEI system .
      * @summary Gets the organization users in the TDEI system
@@ -114,7 +114,7 @@ export declare const OrganizationApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<OrgUser>>>;
+    getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<OrgUser>>>>;
     /**
      * Updates an organization in the TDEI system.  Returns success if updated.
      * @summary Updates an organization in the TDEI system
@@ -157,7 +157,7 @@ export declare const OrganizationApiFactory: (configuration?: Configuration, bas
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrganizationList>>;
+    getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrganizationList>>>;
     /**
      * Gets the organization users in the TDEI system .
      * @summary Gets the organization users in the TDEI system
@@ -168,7 +168,7 @@ export declare const OrganizationApiFactory: (configuration?: Configuration, bas
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrgUser>>;
+    getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrgUser>>>;
     /**
      * Updates an organization in the TDEI system.  Returns success if updated.
      * @summary Updates an organization in the TDEI system
@@ -216,7 +216,7 @@ export declare class OrganizationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof OrganizationApi
      */
-    getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrganizationList>>;
+    getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrganizationList>>>;
     /**
      * Gets the organization users in the TDEI system .
      * @summary Gets the organization users in the TDEI system
@@ -228,7 +228,7 @@ export declare class OrganizationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof OrganizationApi
      */
-    getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrgUser>>;
+    getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrgUser>>>;
     /**
      * Updates an organization in the TDEI system.  Returns success if updated.
      * @summary Updates an organization in the TDEI system

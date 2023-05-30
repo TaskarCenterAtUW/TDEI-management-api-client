@@ -86,7 +86,7 @@ export declare const GTFSPathwaysStationApiFp: (configuration?: Configuration) =
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Station>>>;
+    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Station>>>>;
     /**
      * Activates/Deactives the station.
      * @summary Activates/Deactives the station.
@@ -132,7 +132,7 @@ export declare const GTFSPathwaysStationApiFactory: (configuration?: Configurati
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Station>>;
+    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Station>>>;
     /**
      * Activates/Deactives the station.
      * @summary Activates/Deactives the station.
@@ -182,7 +182,7 @@ export declare class GTFSPathwaysStationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GTFSPathwaysStationApi
      */
-    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Station>>;
+    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Station>>>;
     /**
      * Activates/Deactives the station.
      * @summary Activates/Deactives the station.

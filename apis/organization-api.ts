@@ -50,6 +50,13 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -102,6 +109,13 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -143,6 +157,13 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             if (tdei_org_id !== undefined) {
                 localVarQueryParameter['tdei_org_id'] = tdei_org_id;
@@ -208,6 +229,13 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             if (searchText !== undefined) {
                 localVarQueryParameter['searchText'] = searchText;
@@ -261,6 +289,13 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -331,7 +366,7 @@ export const OrganizationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<OrganizationList>>> {
+        async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<OrganizationList>>>> {
             const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).getOrganization(tdei_org_id, searchText, bbox, page_no, page_size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -348,7 +383,7 @@ export const OrganizationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<OrgUser>>> {
+        async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<OrgUser>>>> {
             const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -410,7 +445,7 @@ export const OrganizationApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrganizationList>> {
+        async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrganizationList>>> {
             return OrganizationApiFp(configuration).getOrganization(tdei_org_id, searchText, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
         },
         /**
@@ -423,7 +458,7 @@ export const OrganizationApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<OrgUser>> {
+        async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrgUser>>> {
             return OrganizationApiFp(configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options).then((request) => request(axios, basePath));
         },
         /**
@@ -481,7 +516,7 @@ export class OrganizationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof OrganizationApi
      */
-    public async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<OrganizationList>> {
+    public async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<OrganizationList>>> {
         return OrganizationApiFp(this.configuration).getOrganization(tdei_org_id, searchText, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -495,7 +530,7 @@ export class OrganizationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof OrganizationApi
      */
-    public async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<OrgUser>> {
+    public async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<OrgUser>>> {
         return OrganizationApiFp(this.configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
     }
     /**

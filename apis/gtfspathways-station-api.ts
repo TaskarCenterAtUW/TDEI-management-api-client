@@ -49,6 +49,13 @@ export const GTFSPathwaysStationApiAxiosParamCreator = function (configuration?:
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -95,6 +102,13 @@ export const GTFSPathwaysStationApiAxiosParamCreator = function (configuration?:
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             if (tdei_station_id !== undefined) {
                 localVarQueryParameter['tdei_station_id'] = tdei_station_id;
@@ -173,6 +187,13 @@ export const GTFSPathwaysStationApiAxiosParamCreator = function (configuration?:
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -220,6 +241,13 @@ export const GTFSPathwaysStationApiAxiosParamCreator = function (configuration?:
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -276,7 +304,7 @@ export const GTFSPathwaysStationApiFp = function(configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Station>>> {
+        async getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Station>>>> {
             const localVarAxiosArgs = await GTFSPathwaysStationApiAxiosParamCreator(configuration).getStation(tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -345,7 +373,7 @@ export const GTFSPathwaysStationApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Station>> {
+        async getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Station>>> {
             return GTFSPathwaysStationApiFp(configuration).getStation(tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
         },
         /**
@@ -405,7 +433,7 @@ export class GTFSPathwaysStationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GTFSPathwaysStationApi
      */
-    public async getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Station>> {
+    public async getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Station>>> {
         return GTFSPathwaysStationApiFp(this.configuration).getStation(tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
     }
     /**

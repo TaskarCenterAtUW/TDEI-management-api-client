@@ -96,7 +96,7 @@ export declare const GTFSFlexServiceApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Service>>>;
+    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
@@ -142,7 +142,7 @@ export declare const GTFSFlexServiceApiFactory: (configuration?: Configuration, 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Service>>;
+    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
@@ -193,7 +193,7 @@ export declare class GTFSFlexServiceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GTFSFlexServiceApi
      */
-    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Service>>;
+    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system

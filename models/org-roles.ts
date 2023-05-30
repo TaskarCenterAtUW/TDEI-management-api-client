@@ -22,13 +22,13 @@ export interface OrgRoles {
      * @type {string}
      * @memberof OrgRoles
      */
-    orgId?: string;
+    tdei_org_id?: string;
     /**
      * 
      * @type {string}
      * @memberof OrgRoles
      */
-    orgName?: string;
+    org_name?: string;
     /**
      * List of roles associated with oraganization.
      * @type {Array<string>}

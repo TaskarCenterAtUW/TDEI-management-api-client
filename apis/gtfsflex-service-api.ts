@@ -49,6 +49,13 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -107,6 +114,13 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -149,6 +163,13 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             if (tdei_service_id !== undefined) {
                 localVarQueryParameter['tdei_service_id'] = tdei_service_id;
@@ -220,6 +241,13 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
             const localVarQueryParameter = {} as any;
 
             // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -292,7 +320,7 @@ export const GTFSFlexServiceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Service>>> {
+        async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>> {
             const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -357,7 +385,7 @@ export const GTFSFlexServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Service>> {
+        async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>> {
             return GTFSFlexServiceApiFp(configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
         },
         /**
@@ -418,7 +446,7 @@ export class GTFSFlexServiceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GTFSFlexServiceApi
      */
-    public async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Service>> {
+    public async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Service>>> {
         return GTFSFlexServiceApiFp(this.configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
     }
     /**
