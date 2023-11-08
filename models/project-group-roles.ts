@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 /**
- * User associated organizations and roles.
+ * User associated project groups and roles.
  * @export
- * @interface OrgRoles
+ * @interface ProjectGroupRoles
  */
-export interface OrgRoles {
+export interface ProjectGroupRoles {
     /**
      * 
      * @type {string}
-     * @memberof OrgRoles
+     * @memberof ProjectGroupRoles
      */
-    tdei_org_id?: string;
+    tdei_project_group_id?: string;
     /**
      * 
      * @type {string}
-     * @memberof OrgRoles
+     * @memberof ProjectGroupRoles
      */
-    org_name?: string;
+    project_group_name?: string;
     /**
-     * List of roles associated with oraganization.
+     * List of roles associated with project group.
      * @type {Array<string>}
-     * @memberof OrgRoles
+     * @memberof ProjectGroupRoles
      */
     roles?: Array<string>;
 }

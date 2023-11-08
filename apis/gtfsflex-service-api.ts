@@ -80,16 +80,16 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
         /**
          * Activates/Deactives the service.
          * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
          * @param {boolean} status Boolean flag to Activate/Deactivate service.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteService: async (orgId: string, serviceId: string, status: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'orgId' is not null or undefined
-            if (orgId === null || orgId === undefined) {
-                throw new RequiredError('orgId','Required parameter orgId was null or undefined when calling deleteService.');
+        deleteService: async (projectGroupId: string, serviceId: string, status: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectGroupId' is not null or undefined
+            if (projectGroupId === null || projectGroupId === undefined) {
+                throw new RequiredError('projectGroupId','Required parameter projectGroupId was null or undefined when calling deleteService.');
             }
             // verify required parameter 'serviceId' is not null or undefined
             if (serviceId === null || serviceId === undefined) {
@@ -99,8 +99,8 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
             if (status === null || status === undefined) {
                 throw new RequiredError('status','Required parameter status was null or undefined when calling deleteService.');
             }
-            const localVarPath = `/api/v1/service/{orgId}/{serviceId}/active/{status}`
-                .replace(`{${"orgId"}}`, encodeURIComponent(String(orgId)))
+            const localVarPath = `/api/v1/service/{projectGroupId}/{serviceId}/active/{status}`
+                .replace(`{${"projectGroupId"}}`, encodeURIComponent(String(projectGroupId)))
                 .replace(`{${"serviceId"}}`, encodeURIComponent(String(serviceId)))
                 .replace(`{${"status"}}`, encodeURIComponent(String(status)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -143,14 +143,14 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
          * @summary Gets the GTFS Flex services in the TDEI system 
          * @param {string} [tdei_service_id] Search by service Id.
          * @param {string} [searchText] Search by service name.
-         * @param {string} [tdei_org_id] Owner organization id.
+         * @param {string} [tdei_project_group_id] Owner project group id.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getService: async (tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getService: async (tdei_service_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/service`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -179,8 +179,8 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
                 localVarQueryParameter['searchText'] = searchText;
             }
 
-            if (tdei_org_id !== undefined) {
-                localVarQueryParameter['tdei_org_id'] = tdei_org_id;
+            if (tdei_project_group_id !== undefined) {
+                localVarQueryParameter['tdei_project_group_id'] = tdei_project_group_id;
             }
 
             if (bbox) {
@@ -215,21 +215,21 @@ export const GTFSFlexServiceApiAxiosParamCreator = function (configuration?: Con
          * Updates a GTFS flex service in the TDEI system.
          * @summary Updates a GTFS flex service in the TDEI system
          * @param {ServiceUpdate} body 
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateService: async (body: ServiceUpdate, orgId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateService: async (body: ServiceUpdate, projectGroupId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling updateService.');
             }
-            // verify required parameter 'orgId' is not null or undefined
-            if (orgId === null || orgId === undefined) {
-                throw new RequiredError('orgId','Required parameter orgId was null or undefined when calling updateService.');
+            // verify required parameter 'projectGroupId' is not null or undefined
+            if (projectGroupId === null || projectGroupId === undefined) {
+                throw new RequiredError('projectGroupId','Required parameter projectGroupId was null or undefined when calling updateService.');
             }
-            const localVarPath = `/api/v1/service/{orgId}`
-                .replace(`{${"orgId"}}`, encodeURIComponent(String(orgId)));
+            const localVarPath = `/api/v1/service/{projectGroupId}`
+                .replace(`{${"projectGroupId"}}`, encodeURIComponent(String(projectGroupId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -295,14 +295,14 @@ export const GTFSFlexServiceApiFp = function(configuration?: Configuration) {
         /**
          * Activates/Deactives the service.
          * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
          * @param {boolean} status Boolean flag to Activate/Deactivate service.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).deleteService(orgId, serviceId, status, options);
+        async deleteService(projectGroupId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).deleteService(projectGroupId, serviceId, status, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -313,15 +313,15 @@ export const GTFSFlexServiceApiFp = function(configuration?: Configuration) {
          * @summary Gets the GTFS Flex services in the TDEI system 
          * @param {string} [tdei_service_id] Search by service Id.
          * @param {string} [searchText] Search by service name.
-         * @param {string} [tdei_org_id] Owner organization id.
+         * @param {string} [tdei_project_group_id] Owner project group id.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>> {
-            const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options);
+        async getService(tdei_service_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>> {
+            const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).getService(tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -331,12 +331,12 @@ export const GTFSFlexServiceApiFp = function(configuration?: Configuration) {
          * Updates a GTFS flex service in the TDEI system.
          * @summary Updates a GTFS flex service in the TDEI system
          * @param {ServiceUpdate} body 
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateService(body: ServiceUpdate, orgId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).updateService(body, orgId, options);
+        async updateService(body: ServiceUpdate, projectGroupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await GTFSFlexServiceApiAxiosParamCreator(configuration).updateService(body, projectGroupId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -364,40 +364,40 @@ export const GTFSFlexServiceApiFactory = function (configuration?: Configuration
         /**
          * Activates/Deactives the service.
          * @summary Activates/Deactives the service.
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
          * @param {boolean} status Boolean flag to Activate/Deactivate service.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return GTFSFlexServiceApiFp(configuration).deleteService(orgId, serviceId, status, options).then((request) => request(axios, basePath));
+        async deleteService(projectGroupId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return GTFSFlexServiceApiFp(configuration).deleteService(projectGroupId, serviceId, status, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets the GTFS Flex services in the TDEI system .
          * @summary Gets the GTFS Flex services in the TDEI system 
          * @param {string} [tdei_service_id] Search by service Id.
          * @param {string} [searchText] Search by service name.
-         * @param {string} [tdei_org_id] Owner organization id.
+         * @param {string} [tdei_project_group_id] Owner project group id.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>> {
-            return GTFSFlexServiceApiFp(configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
+        async getService(tdei_service_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>> {
+            return GTFSFlexServiceApiFp(configuration).getService(tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a GTFS flex service in the TDEI system.
          * @summary Updates a GTFS flex service in the TDEI system
          * @param {ServiceUpdate} body 
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateService(body: ServiceUpdate, orgId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return GTFSFlexServiceApiFp(configuration).updateService(body, orgId, options).then((request) => request(axios, basePath));
+        async updateService(body: ServiceUpdate, projectGroupId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return GTFSFlexServiceApiFp(configuration).updateService(body, projectGroupId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -423,22 +423,22 @@ export class GTFSFlexServiceApi extends BaseAPI {
     /**
      * Activates/Deactives the service.
      * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate service.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GTFSFlexServiceApi
      */
-    public async deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return GTFSFlexServiceApiFp(this.configuration).deleteService(orgId, serviceId, status, options).then((request) => request(this.axios, this.basePath));
+    public async deleteService(projectGroupId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return GTFSFlexServiceApiFp(this.configuration).deleteService(projectGroupId, serviceId, status, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system 
      * @param {string} [tdei_service_id] Search by service Id.
      * @param {string} [searchText] Search by service name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
@@ -446,19 +446,19 @@ export class GTFSFlexServiceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GTFSFlexServiceApi
      */
-    public async getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Service>>> {
-        return GTFSFlexServiceApiFp(this.configuration).getService(tdei_service_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
+    public async getService(tdei_service_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Service>>> {
+        return GTFSFlexServiceApiFp(this.configuration).getService(tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
      * @param {ServiceUpdate} body 
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GTFSFlexServiceApi
      */
-    public async updateService(body: ServiceUpdate, orgId: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return GTFSFlexServiceApiFp(this.configuration).updateService(body, orgId, options).then((request) => request(this.axios, this.basePath));
+    public async updateService(body: ServiceUpdate, projectGroupId: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return GTFSFlexServiceApiFp(this.configuration).updateService(body, projectGroupId, options).then((request) => request(this.axios, this.basePath));
     }
 }

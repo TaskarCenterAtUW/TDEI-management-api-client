@@ -14,49 +14,49 @@
 /**
  * 
  * @export
- * @interface OrgUser
+ * @interface ProjectGroupUser
  */
-export interface OrgUser {
+export interface ProjectGroupUser {
     /**
      * 
      * @type {string}
-     * @memberof OrgUser
+     * @memberof ProjectGroupUser
      */
     user_id: string;
     /**
      * 
      * @type {string}
-     * @memberof OrgUser
+     * @memberof ProjectGroupUser
      */
     first_name: string;
     /**
      * 
      * @type {string}
-     * @memberof OrgUser
+     * @memberof ProjectGroupUser
      */
     last_name: string;
     /**
      * 
      * @type {string}
-     * @memberof OrgUser
+     * @memberof ProjectGroupUser
      */
     email: string;
     /**
      * 
      * @type {string}
-     * @memberof OrgUser
+     * @memberof ProjectGroupUser
      */
     username: string;
     /**
      * 
      * @type {string}
-     * @memberof OrgUser
+     * @memberof ProjectGroupUser
      */
     phone: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof OrgUser
+     * @memberof ProjectGroupUser
      */
     roles: Array<string>;
 }

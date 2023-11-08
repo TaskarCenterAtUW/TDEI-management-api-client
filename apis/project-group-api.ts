@@ -16,29 +16,29 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { OrgUser } from '../models';
-import { Organization } from '../models';
-import { OrganizationList } from '../models';
+import { ProjectGroup } from '../models';
+import { ProjectGroupList } from '../models';
+import { ProjectGroupUser } from '../models';
 import { Response } from '../models';
 /**
- * OrganizationApi - axios parameter creator
+ * ProjectGroupApi - axios parameter creator
  * @export
  */
-export const OrganizationApiAxiosParamCreator = function (configuration?: Configuration) {
+export const ProjectGroupApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Creates an organization in the TDEI system.  Returns the id for the newly created organization.
-         * @summary Creates an organization in the TDEI system 
-         * @param {Organization} body 
+         * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
+         * @summary Creates an project group in the TDEI system 
+         * @param {ProjectGroup} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrganization: async (body: Organization, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createProjectGroup: async (body: ProjectGroup, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling createOrganization.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling createProjectGroup.');
             }
-            const localVarPath = `/api/v1/organization`;
+            const localVarPath = `/api/v1/project-group`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -79,24 +79,24 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
-         * Activates/Deactives the organization.
-         * @summary Activates/Deactives the organization.
-         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+         * Activates/Deactives the project group.
+         * @summary Activates/Deactives the project group.
+         * @param {string} projectGroupId projectGroupId of the project group to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate project group.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteOrganization: async (orgId: string, status: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'orgId' is not null or undefined
-            if (orgId === null || orgId === undefined) {
-                throw new RequiredError('orgId','Required parameter orgId was null or undefined when calling deleteOrganization.');
+        deleteProjectGroup: async (projectGroupId: string, status: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectGroupId' is not null or undefined
+            if (projectGroupId === null || projectGroupId === undefined) {
+                throw new RequiredError('projectGroupId','Required parameter projectGroupId was null or undefined when calling deleteProjectGroup.');
             }
             // verify required parameter 'status' is not null or undefined
             if (status === null || status === undefined) {
-                throw new RequiredError('status','Required parameter status was null or undefined when calling deleteOrganization.');
+                throw new RequiredError('status','Required parameter status was null or undefined when calling deleteProjectGroup.');
             }
-            const localVarPath = `/api/v1/organization/{orgId}/active/{status}`
-                .replace(`{${"orgId"}}`, encodeURIComponent(String(orgId)))
+            const localVarPath = `/api/v1/project-group/{projectGroupId}/active/{status}`
+                .replace(`{${"projectGroupId"}}`, encodeURIComponent(String(projectGroupId)))
                 .replace(`{${"status"}}`, encodeURIComponent(String(status)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -134,18 +134,18 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
-         * Gets the organizations in the TDEI system .
-         * @summary Gets the organizations in the TDEI system 
-         * @param {string} [tdei_org_id] Search by organization Id.
-         * @param {string} [searchText] Search by organization name.
+         * Gets the project groups in the TDEI system.
+         * @summary Gets the project groups in the TDEI system 
+         * @param {string} [tdei_project_group_id] Search by project group Id.
+         * @param {string} [searchText] Search by project group name.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganization: async (tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/organization`;
+        getProjectGroup: async (tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/project-group`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -165,8 +165,8 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (tdei_org_id !== undefined) {
-                localVarQueryParameter['tdei_org_id'] = tdei_org_id;
+            if (tdei_project_group_id !== undefined) {
+                localVarQueryParameter['tdei_project_group_id'] = tdei_project_group_id;
             }
 
             if (searchText !== undefined) {
@@ -202,22 +202,22 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
-         * Gets the organization users in the TDEI system .
-         * @summary Gets the organization users in the TDEI system 
-         * @param {string} orgId Organization id for which users to be fetched
-         * @param {string} [searchText] Search by organization name.
+         * Gets the project group users in the TDEI system.
+         * @summary Gets the project group users in the TDEI system 
+         * @param {string} projectGroupId Project group id for which users to be fetched
+         * @param {string} [searchText] Search by project group name.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganizationUsers: async (orgId: string, searchText?: string, page_no?: string, page_size?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'orgId' is not null or undefined
-            if (orgId === null || orgId === undefined) {
-                throw new RequiredError('orgId','Required parameter orgId was null or undefined when calling getOrganizationUsers.');
+        getProjectGroupUsers: async (projectGroupId: string, searchText?: string, page_no?: string, page_size?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectGroupId' is not null or undefined
+            if (projectGroupId === null || projectGroupId === undefined) {
+                throw new RequiredError('projectGroupId','Required parameter projectGroupId was null or undefined when calling getProjectGroupUsers.');
             }
-            const localVarPath = `/api/v1/organization/{orgId}/users`
-                .replace(`{${"orgId"}}`, encodeURIComponent(String(orgId)));
+            const localVarPath = `/api/v1/project-group/{projectGroupId}/users`
+                .replace(`{${"projectGroupId"}}`, encodeURIComponent(String(projectGroupId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -266,18 +266,18 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
-         * Updates an organization in the TDEI system.  Returns success if updated.
-         * @summary Updates an organization in the TDEI system 
-         * @param {Organization} body 
+         * Updates an project group in the TDEI system.  Returns success if updated.
+         * @summary Updates an project group in the TDEI system 
+         * @param {ProjectGroup} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateOrganization: async (body: Organization, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateProjectGroup: async (body: ProjectGroup, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling updateOrganization.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling updateProjectGroup.');
             }
-            const localVarPath = `/api/v1/organization`;
+            const localVarPath = `/api/v1/project-group`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -321,84 +321,84 @@ export const OrganizationApiAxiosParamCreator = function (configuration?: Config
 };
 
 /**
- * OrganizationApi - functional programming interface
+ * ProjectGroupApi - functional programming interface
  * @export
  */
-export const OrganizationApiFp = function(configuration?: Configuration) {
+export const ProjectGroupApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Creates an organization in the TDEI system.  Returns the id for the newly created organization.
-         * @summary Creates an organization in the TDEI system 
-         * @param {Organization} body 
+         * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
+         * @summary Creates an project group in the TDEI system 
+         * @param {ProjectGroup} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOrganization(body: Organization, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Response>>> {
-            const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).createOrganization(body, options);
+        async createProjectGroup(body: ProjectGroup, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Response>>> {
+            const localVarAxiosArgs = await ProjectGroupApiAxiosParamCreator(configuration).createProjectGroup(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Activates/Deactives the organization.
-         * @summary Activates/Deactives the organization.
-         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+         * Activates/Deactives the project group.
+         * @summary Activates/Deactives the project group.
+         * @param {string} projectGroupId projectGroupId of the project group to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate project group.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).deleteOrganization(orgId, status, options);
+        async deleteProjectGroup(projectGroupId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await ProjectGroupApiAxiosParamCreator(configuration).deleteProjectGroup(projectGroupId, status, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Gets the organizations in the TDEI system .
-         * @summary Gets the organizations in the TDEI system 
-         * @param {string} [tdei_org_id] Search by organization Id.
-         * @param {string} [searchText] Search by organization name.
+         * Gets the project groups in the TDEI system.
+         * @summary Gets the project groups in the TDEI system 
+         * @param {string} [tdei_project_group_id] Search by project group Id.
+         * @param {string} [searchText] Search by project group name.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<OrganizationList>>>> {
-            const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).getOrganization(tdei_org_id, searchText, bbox, page_no, page_size, options);
+        async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupList>>>> {
+            const localVarAxiosArgs = await ProjectGroupApiAxiosParamCreator(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Gets the organization users in the TDEI system .
-         * @summary Gets the organization users in the TDEI system 
-         * @param {string} orgId Organization id for which users to be fetched
-         * @param {string} [searchText] Search by organization name.
+         * Gets the project group users in the TDEI system.
+         * @summary Gets the project group users in the TDEI system 
+         * @param {string} projectGroupId Project group id for which users to be fetched
+         * @param {string} [searchText] Search by project group name.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<OrgUser>>>> {
-            const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options);
+        async getProjectGroupUsers(projectGroupId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupUser>>>> {
+            const localVarAxiosArgs = await ProjectGroupApiAxiosParamCreator(configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Updates an organization in the TDEI system.  Returns success if updated.
-         * @summary Updates an organization in the TDEI system 
-         * @param {Organization} body 
+         * Updates an project group in the TDEI system.  Returns success if updated.
+         * @summary Updates an project group in the TDEI system 
+         * @param {ProjectGroup} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateOrganization(body: Organization, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
-            const localVarAxiosArgs = await OrganizationApiAxiosParamCreator(configuration).updateOrganization(body, options);
+        async updateProjectGroup(body: ProjectGroup, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>> {
+            const localVarAxiosArgs = await ProjectGroupApiAxiosParamCreator(configuration).updateProjectGroup(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -408,140 +408,140 @@ export const OrganizationApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * OrganizationApi - factory interface
+ * ProjectGroupApi - factory interface
  * @export
  */
-export const OrganizationApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const ProjectGroupApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * Creates an organization in the TDEI system.  Returns the id for the newly created organization.
-         * @summary Creates an organization in the TDEI system 
-         * @param {Organization} body 
+         * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
+         * @summary Creates an project group in the TDEI system 
+         * @param {ProjectGroup} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOrganization(body: Organization, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>> {
-            return OrganizationApiFp(configuration).createOrganization(body, options).then((request) => request(axios, basePath));
+        async createProjectGroup(body: ProjectGroup, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>> {
+            return ProjectGroupApiFp(configuration).createProjectGroup(body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Activates/Deactives the organization.
-         * @summary Activates/Deactives the organization.
-         * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+         * Activates/Deactives the project group.
+         * @summary Activates/Deactives the project group.
+         * @param {string} projectGroupId projectGroupId of the project group to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate project group.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return OrganizationApiFp(configuration).deleteOrganization(orgId, status, options).then((request) => request(axios, basePath));
+        async deleteProjectGroup(projectGroupId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return ProjectGroupApiFp(configuration).deleteProjectGroup(projectGroupId, status, options).then((request) => request(axios, basePath));
         },
         /**
-         * Gets the organizations in the TDEI system .
-         * @summary Gets the organizations in the TDEI system 
-         * @param {string} [tdei_org_id] Search by organization Id.
-         * @param {string} [searchText] Search by organization name.
+         * Gets the project groups in the TDEI system.
+         * @summary Gets the project groups in the TDEI system 
+         * @param {string} [tdei_project_group_id] Search by project group Id.
+         * @param {string} [searchText] Search by project group name.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrganizationList>>> {
-            return OrganizationApiFp(configuration).getOrganization(tdei_org_id, searchText, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
+        async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupList>>> {
+            return ProjectGroupApiFp(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
         },
         /**
-         * Gets the organization users in the TDEI system .
-         * @summary Gets the organization users in the TDEI system 
-         * @param {string} orgId Organization id for which users to be fetched
-         * @param {string} [searchText] Search by organization name.
+         * Gets the project group users in the TDEI system.
+         * @summary Gets the project group users in the TDEI system 
+         * @param {string} projectGroupId Project group id for which users to be fetched
+         * @param {string} [searchText] Search by project group name.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrgUser>>> {
-            return OrganizationApiFp(configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options).then((request) => request(axios, basePath));
+        async getProjectGroupUsers(projectGroupId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupUser>>> {
+            return ProjectGroupApiFp(configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options).then((request) => request(axios, basePath));
         },
         /**
-         * Updates an organization in the TDEI system.  Returns success if updated.
-         * @summary Updates an organization in the TDEI system 
-         * @param {Organization} body 
+         * Updates an project group in the TDEI system.  Returns success if updated.
+         * @summary Updates an project group in the TDEI system 
+         * @param {ProjectGroup} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateOrganization(body: Organization, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
-            return OrganizationApiFp(configuration).updateOrganization(body, options).then((request) => request(axios, basePath));
+        async updateProjectGroup(body: ProjectGroup, options?: AxiosRequestConfig): Promise<AxiosResponse<void>> {
+            return ProjectGroupApiFp(configuration).updateProjectGroup(body, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * OrganizationApi - object-oriented interface
+ * ProjectGroupApi - object-oriented interface
  * @export
- * @class OrganizationApi
+ * @class ProjectGroupApi
  * @extends {BaseAPI}
  */
-export class OrganizationApi extends BaseAPI {
+export class ProjectGroupApi extends BaseAPI {
     /**
-     * Creates an organization in the TDEI system.  Returns the id for the newly created organization.
-     * @summary Creates an organization in the TDEI system 
-     * @param {Organization} body 
+     * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
+     * @summary Creates an project group in the TDEI system 
+     * @param {ProjectGroup} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrganizationApi
+     * @memberof ProjectGroupApi
      */
-    public async createOrganization(body: Organization, options?: AxiosRequestConfig) : Promise<AxiosResponse<Response>> {
-        return OrganizationApiFp(this.configuration).createOrganization(body, options).then((request) => request(this.axios, this.basePath));
+    public async createProjectGroup(body: ProjectGroup, options?: AxiosRequestConfig) : Promise<AxiosResponse<Response>> {
+        return ProjectGroupApiFp(this.configuration).createProjectGroup(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Activates/Deactives the organization.
-     * @summary Activates/Deactives the organization.
-     * @param {string} orgId Organization Id of the organization to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate organization.
+     * Activates/Deactives the project group.
+     * @summary Activates/Deactives the project group.
+     * @param {string} projectGroupId projectGroupId of the project group to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate project group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrganizationApi
+     * @memberof ProjectGroupApi
      */
-    public async deleteOrganization(orgId: string, status: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return OrganizationApiFp(this.configuration).deleteOrganization(orgId, status, options).then((request) => request(this.axios, this.basePath));
+    public async deleteProjectGroup(projectGroupId: string, status: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return ProjectGroupApiFp(this.configuration).deleteProjectGroup(projectGroupId, status, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Gets the organizations in the TDEI system .
-     * @summary Gets the organizations in the TDEI system 
-     * @param {string} [tdei_org_id] Search by organization Id.
-     * @param {string} [searchText] Search by organization name.
+     * Gets the project groups in the TDEI system.
+     * @summary Gets the project groups in the TDEI system 
+     * @param {string} [tdei_project_group_id] Search by project group Id.
+     * @param {string} [searchText] Search by project group name.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrganizationApi
+     * @memberof ProjectGroupApi
      */
-    public async getOrganization(tdei_org_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<OrganizationList>>> {
-        return OrganizationApiFp(this.configuration).getOrganization(tdei_org_id, searchText, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
+    public async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<ProjectGroupList>>> {
+        return ProjectGroupApiFp(this.configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Gets the organization users in the TDEI system .
-     * @summary Gets the organization users in the TDEI system 
-     * @param {string} orgId Organization id for which users to be fetched
-     * @param {string} [searchText] Search by organization name.
+     * Gets the project group users in the TDEI system.
+     * @summary Gets the project group users in the TDEI system 
+     * @param {string} projectGroupId Project group id for which users to be fetched
+     * @param {string} [searchText] Search by project group name.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrganizationApi
+     * @memberof ProjectGroupApi
      */
-    public async getOrganizationUsers(orgId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<OrgUser>>> {
-        return OrganizationApiFp(this.configuration).getOrganizationUsers(orgId, searchText, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
+    public async getProjectGroupUsers(projectGroupId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<ProjectGroupUser>>> {
+        return ProjectGroupApiFp(this.configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Updates an organization in the TDEI system.  Returns success if updated.
-     * @summary Updates an organization in the TDEI system 
-     * @param {Organization} body 
+     * Updates an project group in the TDEI system.  Returns success if updated.
+     * @summary Updates an project group in the TDEI system 
+     * @param {ProjectGroup} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrganizationApi
+     * @memberof ProjectGroupApi
      */
-    public async updateOrganization(body: Organization, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
-        return OrganizationApiFp(this.configuration).updateOrganization(body, options).then((request) => request(this.axios, this.basePath));
+    public async updateProjectGroup(body: ProjectGroup, options?: AxiosRequestConfig) : Promise<AxiosResponse<void>> {
+        return ProjectGroupApiFp(this.configuration).updateProjectGroup(body, options).then((request) => request(this.axios, this.basePath));
     }
 }

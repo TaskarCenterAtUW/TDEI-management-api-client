@@ -13,45 +13,45 @@
  */
 import { Polygon } from './polygon';
 /**
- * Describes an Organization.
+ * Describes an Project Group.
  * @export
- * @interface Organization
+ * @interface ProjectGroup
  */
-export interface Organization {
+export interface ProjectGroup {
     /**
-     * Organization Id uniquely represented in the TDEI system. System generated.
+     * Project group Id uniquely represented in the TDEI system. System generated.
      * @type {string}
-     * @memberof Organization
+     * @memberof ProjectGroup
      */
-    tdei_org_id?: string;
+    tdei_project_group_id?: string;
     /**
-     * Name of the organization.
+     * Name of the project group.
      * @type {string}
-     * @memberof Organization
+     * @memberof ProjectGroup
      */
-    org_name: string;
+    project_group_name: string;
     /**
-     * Phone of the organization for communication.
+     * Phone of the project group for communication.
      * @type {string}
-     * @memberof Organization
+     * @memberof ProjectGroup
      */
     phone?: string;
     /**
-     * Url of the transit organization.
+     * Url of the transit project group.
      * @type {string}
-     * @memberof Organization
+     * @memberof ProjectGroup
      */
     url?: string;
     /**
-     * Address of the transit organization.
+     * Address of the transit project group.
      * @type {string}
-     * @memberof Organization
+     * @memberof ProjectGroup
      */
     address: string;
     /**
      * 
      * @type {Polygon}
-     * @memberof Organization
+     * @memberof ProjectGroup
      */
     polygon?: Polygon;
 }

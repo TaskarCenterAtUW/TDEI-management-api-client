@@ -14,51 +14,51 @@
 import { POC } from './poc';
 import { Polygon } from './polygon';
 /**
- * Describes an Organization.
+ * Describes an Project group.
  * @export
- * @interface OrganizationList
+ * @interface ProjectGroupList
  */
-export interface OrganizationList {
+export interface ProjectGroupList {
     /**
-     * Organization Id uniquely represented in the TDEI system. System generated.
+     * ProjectGroupId uniquely represented in the TDEI system. System generated.
      * @type {string}
-     * @memberof OrganizationList
+     * @memberof ProjectGroupList
      */
-    tdei_org_id?: string;
+    tdei_project_group_id?: string;
     /**
-     * Name of the organization.
+     * Name of the project group.
      * @type {string}
-     * @memberof OrganizationList
+     * @memberof ProjectGroupList
      */
     name?: string;
     /**
-     * Phone of the organization for communication.
+     * Phone of the project group for communication.
      * @type {string}
-     * @memberof OrganizationList
+     * @memberof ProjectGroupList
      */
     phone?: string;
     /**
-     * Url of the transit organization.
+     * Url of the transit project group.
      * @type {string}
-     * @memberof OrganizationList
+     * @memberof ProjectGroupList
      */
     url?: string;
     /**
-     * Address of the transit organization.
+     * Address of the transit project group.
      * @type {string}
-     * @memberof OrganizationList
+     * @memberof ProjectGroupList
      */
     address?: string;
     /**
      * 
      * @type {Polygon}
-     * @memberof OrganizationList
+     * @memberof ProjectGroupList
      */
     polygon?: Polygon;
     /**
-     * Organization POC details
+     * Project group POC details
      * @type {Array<POC>}
-     * @memberof OrganizationList
+     * @memberof ProjectGroupList
      */
     poc?: Array<POC>;
 }
