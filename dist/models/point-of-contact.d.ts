@@ -16,11 +16,11 @@
  */
 export interface PointOfContact {
     /**
-     * Organization id to which point of contact to be associated.
+     * Project group id to which point of contact to be associated.
      * @type {string}
      * @memberof PointOfContact
      */
-    tdei_org_id?: string;
+    tdei_project_group_id?: string;
     /**
      * Point of contact username. Username represents user uniquely in the TDEI system. User should be already registered in the TDEI system using [POST] /user API.
      * @type {string}

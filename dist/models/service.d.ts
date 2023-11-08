@@ -23,11 +23,11 @@ export interface Service {
      */
     tdei_service_id?: string;
     /**
-     * Organization id of the service.
+     * Project group id of the service.
      * @type {string}
      * @memberof Service
      */
-    tdei_org_id?: string;
+    tdei_project_group_id?: string;
     /**
      * Name of the service.
      * @type {string}

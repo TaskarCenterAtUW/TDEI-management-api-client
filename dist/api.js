@@ -25,5 +25,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */ __exportStar(require("./apis/auth-api"), exports);
 __exportStar(require("./apis/gtfsflex-service-api"), exports);
 __exportStar(require("./apis/gtfspathways-station-api"), exports);
-__exportStar(require("./apis/organization-api"), exports);
+__exportStar(require("./apis/project-group-api"), exports);
 __exportStar(require("./apis/user-management-api"), exports);

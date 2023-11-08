@@ -31,35 +31,35 @@ export declare const GTFSFlexServiceApiAxiosParamCreator: (configuration?: Confi
     /**
      * Activates/Deactives the service.
      * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate service.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteService: (orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    deleteService: (projectGroupId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
      * @param {string} [searchText] Search by service name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getService: (tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getService: (tdei_service_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
      * @param {ServiceUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateService: (body: ServiceUpdate, orgId: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    updateService: (body: ServiceUpdate, projectGroupId: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * GTFSFlexServiceApi - functional programming interface
@@ -77,35 +77,35 @@ export declare const GTFSFlexServiceApiFp: (configuration?: Configuration) => {
     /**
      * Activates/Deactives the service.
      * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate service.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
+    deleteService(projectGroupId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
     /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
      * @param {string} [searchText] Search by service name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>>;
+    getService(tdei_service_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
      * @param {ServiceUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateService(body: ServiceUpdate, orgId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
+    updateService(body: ServiceUpdate, projectGroupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
 };
 /**
  * GTFSFlexServiceApi - factory interface
@@ -123,35 +123,35 @@ export declare const GTFSFlexServiceApiFactory: (configuration?: Configuration, 
     /**
      * Activates/Deactives the service.
      * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate service.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    deleteService(projectGroupId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
      * @param {string} [searchText] Search by service name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
+    getService(tdei_service_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
      * @param {ServiceUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateService(body: ServiceUpdate, orgId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    updateService(body: ServiceUpdate, projectGroupId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
 };
 /**
  * GTFSFlexServiceApi - object-oriented interface
@@ -172,20 +172,20 @@ export declare class GTFSFlexServiceApi extends BaseAPI {
     /**
      * Activates/Deactives the service.
      * @summary Activates/Deactives the service.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate service.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GTFSFlexServiceApi
      */
-    deleteService(orgId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    deleteService(projectGroupId: string, serviceId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Gets the GTFS Flex services in the TDEI system .
      * @summary Gets the GTFS Flex services in the TDEI system
      * @param {string} [tdei_service_id] Search by service Id.
      * @param {string} [searchText] Search by service name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
@@ -193,15 +193,15 @@ export declare class GTFSFlexServiceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GTFSFlexServiceApi
      */
-    getService(tdei_service_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
+    getService(tdei_service_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
     /**
      * Updates a GTFS flex service in the TDEI system.
      * @summary Updates a GTFS flex service in the TDEI system
      * @param {ServiceUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GTFSFlexServiceApi
      */
-    updateService(body: ServiceUpdate, orgId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    updateService(body: ServiceUpdate, projectGroupId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
 }

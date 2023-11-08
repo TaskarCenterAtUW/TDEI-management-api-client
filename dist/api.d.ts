@@ -11,5 +11,5 @@
  */ export * from './apis/auth-api';
 export * from './apis/gtfsflex-service-api';
 export * from './apis/gtfspathways-station-api';
-export * from './apis/organization-api';
+export * from './apis/project-group-api';
 export * from './apis/user-management-api';

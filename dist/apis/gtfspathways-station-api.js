@@ -152,14 +152,14 @@ exports.GTFSPathwaysStationApiAxiosParamCreator = function (configuration) {
          * @summary Gets the GTFS Pathways Station in the TDEI system
          * @param {string} [tdei_station_id] Search by station Id.
          * @param {string} [searchText] Search by station name.
-         * @param {string} [tdei_org_id] Owner organization id.
+         * @param {string} [tdei_project_group_id] Owner project group id.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStation: function (tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options) {
+        getStation: function (tdei_station_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions;
@@ -195,8 +195,8 @@ exports.GTFSPathwaysStationApiAxiosParamCreator = function (configuration) {
                             if (searchText !== undefined) {
                                 localVarQueryParameter['searchText'] = searchText;
                             }
-                            if (tdei_org_id !== undefined) {
-                                localVarQueryParameter['tdei_org_id'] = tdei_org_id;
+                            if (tdei_project_group_id !== undefined) {
+                                localVarQueryParameter['tdei_project_group_id'] = tdei_project_group_id;
                             }
                             if (bbox) {
                                 localVarQueryParameter['bbox'] = bbox;
@@ -228,22 +228,22 @@ exports.GTFSPathwaysStationApiAxiosParamCreator = function (configuration) {
         /**
          * Activates/Deactives the station.
          * @summary Activates/Deactives the station.
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {string} stationId Station Id of the station to be Activated/Deactivated.
          * @param {boolean} status Boolean flag to Activate/Deactivate station.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setServiceStatus: function (orgId, stationId, status, options) {
+        setServiceStatus: function (projectGroupId, stationId, status, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
-                            // verify required parameter 'orgId' is not null or undefined
-                            if (orgId === null || orgId === undefined) {
-                                throw new base_1.RequiredError('orgId', 'Required parameter orgId was null or undefined when calling setServiceStatus.');
+                            // verify required parameter 'projectGroupId' is not null or undefined
+                            if (projectGroupId === null || projectGroupId === undefined) {
+                                throw new base_1.RequiredError('projectGroupId', 'Required parameter projectGroupId was null or undefined when calling setServiceStatus.');
                             }
                             // verify required parameter 'stationId' is not null or undefined
                             if (stationId === null || stationId === undefined) {
@@ -253,8 +253,8 @@ exports.GTFSPathwaysStationApiAxiosParamCreator = function (configuration) {
                             if (status === null || status === undefined) {
                                 throw new base_1.RequiredError('status', 'Required parameter status was null or undefined when calling setServiceStatus.');
                             }
-                            localVarPath = "/api/v1/station/{orgId}/{stationId}/active/{status}"
-                                .replace("{" + "orgId" + "}", encodeURIComponent(String(orgId)))
+                            localVarPath = "/api/v1/station/{projectGroupId}/{stationId}/active/{status}"
+                                .replace("{" + "projectGroupId" + "}", encodeURIComponent(String(projectGroupId)))
                                 .replace("{" + "stationId" + "}", encodeURIComponent(String(stationId)))
                                 .replace("{" + "status" + "}", encodeURIComponent(String(status)));
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -301,11 +301,11 @@ exports.GTFSPathwaysStationApiAxiosParamCreator = function (configuration) {
          * Updates a GTFS Pathways station in the TDEI system.
          * @summary Updates a GTFS Pathways station in the TDEI system
          * @param {StationUpdate} body
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateStation: function (body, orgId, options) {
+        updateStation: function (body, projectGroupId, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions, needsSerialization;
@@ -316,12 +316,12 @@ exports.GTFSPathwaysStationApiAxiosParamCreator = function (configuration) {
                             if (body === null || body === undefined) {
                                 throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateStation.');
                             }
-                            // verify required parameter 'orgId' is not null or undefined
-                            if (orgId === null || orgId === undefined) {
-                                throw new base_1.RequiredError('orgId', 'Required parameter orgId was null or undefined when calling updateStation.');
+                            // verify required parameter 'projectGroupId' is not null or undefined
+                            if (projectGroupId === null || projectGroupId === undefined) {
+                                throw new base_1.RequiredError('projectGroupId', 'Required parameter projectGroupId was null or undefined when calling updateStation.');
                             }
-                            localVarPath = "/api/v1/station/{orgId}"
-                                .replace("{" + "orgId" + "}", encodeURIComponent(String(orgId)));
+                            localVarPath = "/api/v1/station/{projectGroupId}"
+                                .replace("{" + "projectGroupId" + "}", encodeURIComponent(String(projectGroupId)));
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -403,19 +403,19 @@ exports.GTFSPathwaysStationApiFp = function (configuration) {
          * @summary Gets the GTFS Pathways Station in the TDEI system
          * @param {string} [tdei_station_id] Search by station Id.
          * @param {string} [searchText] Search by station name.
-         * @param {string} [tdei_org_id] Owner organization id.
+         * @param {string} [tdei_project_group_id] Owner project group id.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStation: function (tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options) {
+        getStation: function (tdei_station_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.GTFSPathwaysStationApiAxiosParamCreator(configuration).getStation(tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options)];
+                        case 0: return [4 /*yield*/, exports.GTFSPathwaysStationApiAxiosParamCreator(configuration).getStation(tdei_station_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -431,18 +431,18 @@ exports.GTFSPathwaysStationApiFp = function (configuration) {
         /**
          * Activates/Deactives the station.
          * @summary Activates/Deactives the station.
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {string} stationId Station Id of the station to be Activated/Deactivated.
          * @param {boolean} status Boolean flag to Activate/Deactivate station.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setServiceStatus: function (orgId, stationId, status, options) {
+        setServiceStatus: function (projectGroupId, stationId, status, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.GTFSPathwaysStationApiAxiosParamCreator(configuration).setServiceStatus(orgId, stationId, status, options)];
+                        case 0: return [4 /*yield*/, exports.GTFSPathwaysStationApiAxiosParamCreator(configuration).setServiceStatus(projectGroupId, stationId, status, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -459,16 +459,16 @@ exports.GTFSPathwaysStationApiFp = function (configuration) {
          * Updates a GTFS Pathways station in the TDEI system.
          * @summary Updates a GTFS Pathways station in the TDEI system
          * @param {StationUpdate} body
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateStation: function (body, orgId, options) {
+        updateStation: function (body, projectGroupId, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.GTFSPathwaysStationApiAxiosParamCreator(configuration).updateStation(body, orgId, options)];
+                        case 0: return [4 /*yield*/, exports.GTFSPathwaysStationApiAxiosParamCreator(configuration).updateStation(body, projectGroupId, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -508,33 +508,33 @@ exports.GTFSPathwaysStationApiFactory = function (configuration, basePath, axios
          * @summary Gets the GTFS Pathways Station in the TDEI system
          * @param {string} [tdei_station_id] Search by station Id.
          * @param {string} [searchText] Search by station name.
-         * @param {string} [tdei_org_id] Owner organization id.
+         * @param {string} [tdei_project_group_id] Owner project group id.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStation: function (tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options) {
+        getStation: function (tdei_station_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.GTFSPathwaysStationApiFp(configuration).getStation(tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, exports.GTFSPathwaysStationApiFp(configuration).getStation(tdei_station_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
         /**
          * Activates/Deactives the station.
          * @summary Activates/Deactives the station.
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {string} stationId Station Id of the station to be Activated/Deactivated.
          * @param {boolean} status Boolean flag to Activate/Deactivate station.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setServiceStatus: function (orgId, stationId, status, options) {
+        setServiceStatus: function (projectGroupId, stationId, status, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.GTFSPathwaysStationApiFp(configuration).setServiceStatus(orgId, stationId, status, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, exports.GTFSPathwaysStationApiFp(configuration).setServiceStatus(projectGroupId, stationId, status, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -542,14 +542,14 @@ exports.GTFSPathwaysStationApiFactory = function (configuration, basePath, axios
          * Updates a GTFS Pathways station in the TDEI system.
          * @summary Updates a GTFS Pathways station in the TDEI system
          * @param {StationUpdate} body
-         * @param {string} orgId Owner organization id.
+         * @param {string} projectGroupId Owner project group id.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateStation: function (body, orgId, options) {
+        updateStation: function (body, projectGroupId, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.GTFSPathwaysStationApiFp(configuration).updateStation(body, orgId, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, exports.GTFSPathwaysStationApiFp(configuration).updateStation(body, projectGroupId, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -587,7 +587,7 @@ var GTFSPathwaysStationApi = /** @class */ (function (_super) {
      * @summary Gets the GTFS Pathways Station in the TDEI system
      * @param {string} [tdei_station_id] Search by station Id.
      * @param {string} [searchText] Search by station name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
@@ -595,29 +595,29 @@ var GTFSPathwaysStationApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof GTFSPathwaysStationApi
      */
-    GTFSPathwaysStationApi.prototype.getStation = function (tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options) {
+    GTFSPathwaysStationApi.prototype.getStation = function (tdei_station_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.GTFSPathwaysStationApiFp(this.configuration).getStation(tdei_station_id, searchText, tdei_org_id, bbox, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, exports.GTFSPathwaysStationApiFp(this.configuration).getStation(tdei_station_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
     /**
      * Activates/Deactives the station.
      * @summary Activates/Deactives the station.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} stationId Station Id of the station to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate station.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GTFSPathwaysStationApi
      */
-    GTFSPathwaysStationApi.prototype.setServiceStatus = function (orgId, stationId, status, options) {
+    GTFSPathwaysStationApi.prototype.setServiceStatus = function (projectGroupId, stationId, status, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.GTFSPathwaysStationApiFp(this.configuration).setServiceStatus(orgId, stationId, status, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, exports.GTFSPathwaysStationApiFp(this.configuration).setServiceStatus(projectGroupId, stationId, status, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -625,16 +625,16 @@ var GTFSPathwaysStationApi = /** @class */ (function (_super) {
      * Updates a GTFS Pathways station in the TDEI system.
      * @summary Updates a GTFS Pathways station in the TDEI system
      * @param {StationUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GTFSPathwaysStationApi
      */
-    GTFSPathwaysStationApi.prototype.updateStation = function (body, orgId, options) {
+    GTFSPathwaysStationApi.prototype.updateStation = function (body, projectGroupId, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.GTFSPathwaysStationApiFp(this.configuration).updateStation(body, orgId, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, exports.GTFSPathwaysStationApiFp(this.configuration).updateStation(body, projectGroupId, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };

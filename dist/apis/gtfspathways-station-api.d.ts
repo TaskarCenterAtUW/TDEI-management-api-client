@@ -33,33 +33,33 @@ export declare const GTFSPathwaysStationApiAxiosParamCreator: (configuration?: C
      * @summary Gets the GTFS Pathways Station in the TDEI system
      * @param {string} [tdei_station_id] Search by station Id.
      * @param {string} [searchText] Search by station name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStation: (tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getStation: (tdei_station_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Activates/Deactives the station.
      * @summary Activates/Deactives the station.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} stationId Station Id of the station to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate station.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    setServiceStatus: (orgId: string, stationId: string, status: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    setServiceStatus: (projectGroupId: string, stationId: string, status: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Updates a GTFS Pathways station in the TDEI system.
      * @summary Updates a GTFS Pathways station in the TDEI system
      * @param {StationUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateStation: (body: StationUpdate, orgId: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    updateStation: (body: StationUpdate, projectGroupId: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * GTFSPathwaysStationApi - functional programming interface
@@ -79,33 +79,33 @@ export declare const GTFSPathwaysStationApiFp: (configuration?: Configuration) =
      * @summary Gets the GTFS Pathways Station in the TDEI system
      * @param {string} [tdei_station_id] Search by station Id.
      * @param {string} [searchText] Search by station name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Station>>>>;
+    getStation(tdei_station_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Station>>>>;
     /**
      * Activates/Deactives the station.
      * @summary Activates/Deactives the station.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} stationId Station Id of the station to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate station.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    setServiceStatus(orgId: string, stationId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
+    setServiceStatus(projectGroupId: string, stationId: string, status: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
     /**
      * Updates a GTFS Pathways station in the TDEI system.
      * @summary Updates a GTFS Pathways station in the TDEI system
      * @param {StationUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateStation(body: StationUpdate, orgId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
+    updateStation(body: StationUpdate, projectGroupId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<void>>>;
 };
 /**
  * GTFSPathwaysStationApi - factory interface
@@ -125,33 +125,33 @@ export declare const GTFSPathwaysStationApiFactory: (configuration?: Configurati
      * @summary Gets the GTFS Pathways Station in the TDEI system
      * @param {string} [tdei_station_id] Search by station Id.
      * @param {string} [searchText] Search by station name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Station>>>;
+    getStation(tdei_station_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Station>>>;
     /**
      * Activates/Deactives the station.
      * @summary Activates/Deactives the station.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} stationId Station Id of the station to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate station.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    setServiceStatus(orgId: string, stationId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    setServiceStatus(projectGroupId: string, stationId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Updates a GTFS Pathways station in the TDEI system.
      * @summary Updates a GTFS Pathways station in the TDEI system
      * @param {StationUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateStation(body: StationUpdate, orgId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    updateStation(body: StationUpdate, projectGroupId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
 };
 /**
  * GTFSPathwaysStationApi - object-oriented interface
@@ -174,7 +174,7 @@ export declare class GTFSPathwaysStationApi extends BaseAPI {
      * @summary Gets the GTFS Pathways Station in the TDEI system
      * @param {string} [tdei_station_id] Search by station Id.
      * @param {string} [searchText] Search by station name.
-     * @param {string} [tdei_org_id] Owner organization id.
+     * @param {string} [tdei_project_group_id] Owner project group id.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
@@ -182,26 +182,26 @@ export declare class GTFSPathwaysStationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GTFSPathwaysStationApi
      */
-    getStation(tdei_station_id?: string, searchText?: string, tdei_org_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Station>>>;
+    getStation(tdei_station_id?: string, searchText?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Station>>>;
     /**
      * Activates/Deactives the station.
      * @summary Activates/Deactives the station.
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {string} stationId Station Id of the station to be Activated/Deactivated.
      * @param {boolean} status Boolean flag to Activate/Deactivate station.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GTFSPathwaysStationApi
      */
-    setServiceStatus(orgId: string, stationId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    setServiceStatus(projectGroupId: string, stationId: string, status: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
     /**
      * Updates a GTFS Pathways station in the TDEI system.
      * @summary Updates a GTFS Pathways station in the TDEI system
      * @param {StationUpdate} body
-     * @param {string} orgId Owner organization id.
+     * @param {string} projectGroupId Owner project group id.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GTFSPathwaysStationApi
      */
-    updateStation(body: StationUpdate, orgId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
+    updateStation(body: StationUpdate, projectGroupId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<void>>;
 }

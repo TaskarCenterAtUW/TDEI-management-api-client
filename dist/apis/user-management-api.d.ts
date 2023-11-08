@@ -12,7 +12,7 @@
 import { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 import { RequestArgs, BaseAPI } from '../base';
-import { OrgRoles } from '../models';
+import { ProjectGroupRoles } from '../models';
 import { Register } from '../models';
 import { RegisterResponse } from '../models';
 import { Response } from '../models';
@@ -24,21 +24,21 @@ import { RoleResponse } from '../models';
  */
 export declare const UserManagementApiAxiosParamCreator: (configuration?: Configuration) => {
     /**
-     * Gets the user associated organizations with roles.
-     * @summary Gets the user associated organizations with roles.
-     * @param {string} userId User id for which oraganizations to be fetched
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    orgRoles: (userId: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
-    /**
-     * Associates a user with the organization and permissions in the TDEI system. Returns the boolean flag true.
-     * @summary Associates a user with the organization and permissions in the TDEI system
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     permission: (body: RoleDetails, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Gets the user associated project groups with roles.
+     * @summary Gets the user associated project groups with roles.
+     * @param {string} userId User id for which project groups to be fetched
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    projectGroupRoles: (userId: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Registers the user to the TDEI system.  Returns new User object.
      * @summary Registers the user to the TDEI system
@@ -69,21 +69,21 @@ export declare const UserManagementApiAxiosParamCreator: (configuration?: Config
  */
 export declare const UserManagementApiFp: (configuration?: Configuration) => {
     /**
-     * Gets the user associated organizations with roles.
-     * @summary Gets the user associated organizations with roles.
-     * @param {string} userId User id for which oraganizations to be fetched
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    orgRoles(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<OrgRoles>>>>;
-    /**
-     * Associates a user with the organization and permissions in the TDEI system. Returns the boolean flag true.
-     * @summary Associates a user with the organization and permissions in the TDEI system
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     permission(body: RoleDetails, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Response>>>;
+    /**
+     * Gets the user associated project groups with roles.
+     * @summary Gets the user associated project groups with roles.
+     * @param {string} userId User id for which project groups to be fetched
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    projectGroupRoles(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupRoles>>>>;
     /**
      * Registers the user to the TDEI system.  Returns new User object.
      * @summary Registers the user to the TDEI system
@@ -114,21 +114,21 @@ export declare const UserManagementApiFp: (configuration?: Configuration) => {
  */
 export declare const UserManagementApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
     /**
-     * Gets the user associated organizations with roles.
-     * @summary Gets the user associated organizations with roles.
-     * @param {string} userId User id for which oraganizations to be fetched
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    orgRoles(userId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrgRoles>>>;
-    /**
-     * Associates a user with the organization and permissions in the TDEI system. Returns the boolean flag true.
-     * @summary Associates a user with the organization and permissions in the TDEI system
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     permission(body: RoleDetails, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>>;
+    /**
+     * Gets the user associated project groups with roles.
+     * @summary Gets the user associated project groups with roles.
+     * @param {string} userId User id for which project groups to be fetched
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    projectGroupRoles(userId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupRoles>>>;
     /**
      * Registers the user to the TDEI system.  Returns new User object.
      * @summary Registers the user to the TDEI system
@@ -161,23 +161,23 @@ export declare const UserManagementApiFactory: (configuration?: Configuration, b
  */
 export declare class UserManagementApi extends BaseAPI {
     /**
-     * Gets the user associated organizations with roles.
-     * @summary Gets the user associated organizations with roles.
-     * @param {string} userId User id for which oraganizations to be fetched
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserManagementApi
-     */
-    orgRoles(userId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<OrgRoles>>>;
-    /**
-     * Associates a user with the organization and permissions in the TDEI system. Returns the boolean flag true.
-     * @summary Associates a user with the organization and permissions in the TDEI system
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
     permission(body: RoleDetails, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>>;
+    /**
+     * Gets the user associated project groups with roles.
+     * @summary Gets the user associated project groups with roles.
+     * @param {string} userId User id for which project groups to be fetched
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserManagementApi
+     */
+    projectGroupRoles(userId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupRoles>>>;
     /**
      * Registers the user to the TDEI system.  Returns new User object.
      * @summary Registers the user to the TDEI system

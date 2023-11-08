@@ -60,7 +60,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GTFSFlexServiceApi = exports.GTFSFlexServiceApiFactory = exports.GTFSFlexServiceApiFp = exports.GTFSFlexServiceApiAxiosParamCreator = void 0;
+exports.ProjectGroupApi = exports.ProjectGroupApiFactory = exports.ProjectGroupApiFp = exports.ProjectGroupApiAxiosParamCreator = void 0;
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -79,20 +79,20 @@ var axios_1 = require("axios");
 // @ts-ignore
 var base_1 = require("../base");
 /**
- * GTFSFlexServiceApi - axios parameter creator
+ * ProjectGroupApi - axios parameter creator
  * @export
  */
-exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
+exports.ProjectGroupApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
-         * Creates a GTFS flex service in the TDEI system.Returns the id for the newly created flex service.
-         * @summary Creates a GTFS flex service in the TDEI system
-         * @param {Service} body
+         * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
+         * @summary Creates an project group in the TDEI system
+         * @param {ProjectGroup} body
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createService: function (body, options) {
+        createProjectGroup: function (body, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions, needsSerialization;
@@ -101,9 +101,9 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
                         case 0:
                             // verify required parameter 'body' is not null or undefined
                             if (body === null || body === undefined) {
-                                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling createService.');
+                                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling createProjectGroup.');
                             }
-                            localVarPath = "/api/v1/service";
+                            localVarPath = "/api/v1/project-group";
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -148,15 +148,14 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} projectGroupId Owner project group id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * Activates/Deactives the project group.
+         * @summary Activates/Deactives the project group.
+         * @param {string} projectGroupId projectGroupId of the project group to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate project group.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteService: function (projectGroupId, serviceId, status, options) {
+        deleteProjectGroup: function (projectGroupId, status, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions;
@@ -165,19 +164,14 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
                         case 0:
                             // verify required parameter 'projectGroupId' is not null or undefined
                             if (projectGroupId === null || projectGroupId === undefined) {
-                                throw new base_1.RequiredError('projectGroupId', 'Required parameter projectGroupId was null or undefined when calling deleteService.');
-                            }
-                            // verify required parameter 'serviceId' is not null or undefined
-                            if (serviceId === null || serviceId === undefined) {
-                                throw new base_1.RequiredError('serviceId', 'Required parameter serviceId was null or undefined when calling deleteService.');
+                                throw new base_1.RequiredError('projectGroupId', 'Required parameter projectGroupId was null or undefined when calling deleteProjectGroup.');
                             }
                             // verify required parameter 'status' is not null or undefined
                             if (status === null || status === undefined) {
-                                throw new base_1.RequiredError('status', 'Required parameter status was null or undefined when calling deleteService.');
+                                throw new base_1.RequiredError('status', 'Required parameter status was null or undefined when calling deleteProjectGroup.');
                             }
-                            localVarPath = "/api/v1/service/{projectGroupId}/{serviceId}/active/{status}"
+                            localVarPath = "/api/v1/project-group/{projectGroupId}/active/{status}"
                                 .replace("{" + "projectGroupId" + "}", encodeURIComponent(String(projectGroupId)))
-                                .replace("{" + "serviceId" + "}", encodeURIComponent(String(serviceId)))
                                 .replace("{" + "status" + "}", encodeURIComponent(String(status)));
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
                             if (configuration) {
@@ -220,25 +214,24 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * Gets the GTFS Flex services in the TDEI system .
-         * @summary Gets the GTFS Flex services in the TDEI system
-         * @param {string} [tdei_service_id] Search by service Id.
-         * @param {string} [searchText] Search by service name.
-         * @param {string} [tdei_project_group_id] Owner project group id.
+         * Gets the project groups in the TDEI system.
+         * @summary Gets the project groups in the TDEI system
+         * @param {string} [tdei_project_group_id] Search by project group Id.
+         * @param {string} [searchText] Search by project group name.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getService: function (tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options) {
+        getProjectGroup: function (tdei_project_group_id, searchText, bbox, page_no, page_size, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
-                            localVarPath = "/api/v1/service";
+                            localVarPath = "/api/v1/project-group";
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -261,14 +254,11 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
                             localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
                             _b.label = 5;
                         case 5:
-                            if (tdei_service_id !== undefined) {
-                                localVarQueryParameter['tdei_service_id'] = tdei_service_id;
+                            if (tdei_project_group_id !== undefined) {
+                                localVarQueryParameter['tdei_project_group_id'] = tdei_project_group_id;
                             }
                             if (searchText !== undefined) {
                                 localVarQueryParameter['searchText'] = searchText;
-                            }
-                            if (tdei_project_group_id !== undefined) {
-                                localVarQueryParameter['tdei_project_group_id'] = tdei_project_group_id;
                             }
                             if (bbox) {
                                 localVarQueryParameter['bbox'] = bbox;
@@ -298,14 +288,85 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * Updates a GTFS flex service in the TDEI system.
-         * @summary Updates a GTFS flex service in the TDEI system
-         * @param {ServiceUpdate} body
-         * @param {string} projectGroupId Owner project group id.
+         * Gets the project group users in the TDEI system.
+         * @summary Gets the project group users in the TDEI system
+         * @param {string} projectGroupId Project group id for which users to be fetched
+         * @param {string} [searchText] Search by project group name.
+         * @param {string} [page_no] Page number to fetch
+         * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateService: function (body, projectGroupId, options) {
+        getProjectGroupUsers: function (projectGroupId, searchText, page_no, page_size, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            // verify required parameter 'projectGroupId' is not null or undefined
+                            if (projectGroupId === null || projectGroupId === undefined) {
+                                throw new base_1.RequiredError('projectGroupId', 'Required parameter projectGroupId was null or undefined when calling getProjectGroupUsers.');
+                            }
+                            localVarPath = "/api/v1/project-group/{projectGroupId}/users"
+                                .replace("{" + "projectGroupId" + "}", encodeURIComponent(String(projectGroupId)));
+                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 5];
+                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 2];
+                            return [4 /*yield*/, configuration.accessToken()];
+                        case 1:
+                            _a = _b.sent();
+                            return [3 /*break*/, 4];
+                        case 2: return [4 /*yield*/, configuration.accessToken];
+                        case 3:
+                            _a = _b.sent();
+                            _b.label = 4;
+                        case 4:
+                            accessToken = _a;
+                            localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+                            _b.label = 5;
+                        case 5:
+                            if (searchText !== undefined) {
+                                localVarQueryParameter['searchText'] = searchText;
+                            }
+                            if (page_no !== undefined) {
+                                localVarQueryParameter['page_no'] = page_no;
+                            }
+                            if (page_size !== undefined) {
+                                localVarQueryParameter['page_size'] = page_size;
+                            }
+                            query = new URLSearchParams(localVarUrlObj.search);
+                            for (key in localVarQueryParameter) {
+                                query.set(key, localVarQueryParameter[key]);
+                            }
+                            for (key in options.params) {
+                                query.set(key, options.params[key]);
+                            }
+                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                            return [2 /*return*/, {
+                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                                    options: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Updates an project group in the TDEI system.  Returns success if updated.
+         * @summary Updates an project group in the TDEI system
+         * @param {ProjectGroup} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateProjectGroup: function (body, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions, needsSerialization;
@@ -314,14 +375,9 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
                         case 0:
                             // verify required parameter 'body' is not null or undefined
                             if (body === null || body === undefined) {
-                                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateService.');
+                                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateProjectGroup.');
                             }
-                            // verify required parameter 'projectGroupId' is not null or undefined
-                            if (projectGroupId === null || projectGroupId === undefined) {
-                                throw new base_1.RequiredError('projectGroupId', 'Required parameter projectGroupId was null or undefined when calling updateService.');
-                            }
-                            localVarPath = "/api/v1/service/{projectGroupId}"
-                                .replace("{" + "projectGroupId" + "}", encodeURIComponent(String(projectGroupId)));
+                            localVarPath = "/api/v1/project-group";
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -368,24 +424,24 @@ exports.GTFSFlexServiceApiAxiosParamCreator = function (configuration) {
     };
 };
 /**
- * GTFSFlexServiceApi - functional programming interface
+ * ProjectGroupApi - functional programming interface
  * @export
  */
-exports.GTFSFlexServiceApiFp = function (configuration) {
+exports.ProjectGroupApiFp = function (configuration) {
     return {
         /**
-         * Creates a GTFS flex service in the TDEI system.Returns the id for the newly created flex service.
-         * @summary Creates a GTFS flex service in the TDEI system
-         * @param {Service} body
+         * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
+         * @summary Creates an project group in the TDEI system
+         * @param {ProjectGroup} body
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createService: function (body, options) {
+        createProjectGroup: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.GTFSFlexServiceApiAxiosParamCreator(configuration).createService(body, options)];
+                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).createProjectGroup(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -399,20 +455,19 @@ exports.GTFSFlexServiceApiFp = function (configuration) {
             });
         },
         /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} projectGroupId Owner project group id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * Activates/Deactives the project group.
+         * @summary Activates/Deactives the project group.
+         * @param {string} projectGroupId projectGroupId of the project group to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate project group.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteService: function (projectGroupId, serviceId, status, options) {
+        deleteProjectGroup: function (projectGroupId, status, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.GTFSFlexServiceApiAxiosParamCreator(configuration).deleteService(projectGroupId, serviceId, status, options)];
+                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).deleteProjectGroup(projectGroupId, status, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -426,23 +481,22 @@ exports.GTFSFlexServiceApiFp = function (configuration) {
             });
         },
         /**
-         * Gets the GTFS Flex services in the TDEI system .
-         * @summary Gets the GTFS Flex services in the TDEI system
-         * @param {string} [tdei_service_id] Search by service Id.
-         * @param {string} [searchText] Search by service name.
-         * @param {string} [tdei_project_group_id] Owner project group id.
+         * Gets the project groups in the TDEI system.
+         * @summary Gets the project groups in the TDEI system
+         * @param {string} [tdei_project_group_id] Search by project group Id.
+         * @param {string} [searchText] Search by project group name.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getService: function (tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options) {
+        getProjectGroup: function (tdei_project_group_id, searchText, bbox, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.GTFSFlexServiceApiAxiosParamCreator(configuration).getService(tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options)];
+                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -456,19 +510,46 @@ exports.GTFSFlexServiceApiFp = function (configuration) {
             });
         },
         /**
-         * Updates a GTFS flex service in the TDEI system.
-         * @summary Updates a GTFS flex service in the TDEI system
-         * @param {ServiceUpdate} body
-         * @param {string} projectGroupId Owner project group id.
+         * Gets the project group users in the TDEI system.
+         * @summary Gets the project group users in the TDEI system
+         * @param {string} projectGroupId Project group id for which users to be fetched
+         * @param {string} [searchText] Search by project group name.
+         * @param {string} [page_no] Page number to fetch
+         * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateService: function (body, projectGroupId, options) {
+        getProjectGroupUsers: function (projectGroupId, searchText, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.GTFSFlexServiceApiAxiosParamCreator(configuration).updateService(body, projectGroupId, options)];
+                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, function (axios, basePath) {
+                                    if (axios === void 0) { axios = axios_1.default; }
+                                    if (basePath === void 0) { basePath = base_1.BASE_PATH; }
+                                    var axiosRequestArgs = __assign(__assign({}, localVarAxiosArgs.options), { url: basePath + localVarAxiosArgs.url });
+                                    return axios.request(axiosRequestArgs);
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Updates an project group in the TDEI system.  Returns success if updated.
+         * @summary Updates an project group in the TDEI system
+         * @param {ProjectGroup} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateProjectGroup: function (body, options) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).updateProjectGroup(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -484,160 +565,190 @@ exports.GTFSFlexServiceApiFp = function (configuration) {
     };
 };
 /**
- * GTFSFlexServiceApi - factory interface
+ * ProjectGroupApi - factory interface
  * @export
  */
-exports.GTFSFlexServiceApiFactory = function (configuration, basePath, axios) {
+exports.ProjectGroupApiFactory = function (configuration, basePath, axios) {
     return {
         /**
-         * Creates a GTFS flex service in the TDEI system.Returns the id for the newly created flex service.
-         * @summary Creates a GTFS flex service in the TDEI system
-         * @param {Service} body
+         * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
+         * @summary Creates an project group in the TDEI system
+         * @param {ProjectGroup} body
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createService: function (body, options) {
+        createProjectGroup: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.GTFSFlexServiceApiFp(configuration).createService(body, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).createProjectGroup(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
         /**
-         * Activates/Deactives the service.
-         * @summary Activates/Deactives the service.
-         * @param {string} projectGroupId Owner project group id.
-         * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-         * @param {boolean} status Boolean flag to Activate/Deactivate service.
+         * Activates/Deactives the project group.
+         * @summary Activates/Deactives the project group.
+         * @param {string} projectGroupId projectGroupId of the project group to be Activated/Deactivated.
+         * @param {boolean} status Boolean flag to Activate/Deactivate project group.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteService: function (projectGroupId, serviceId, status, options) {
+        deleteProjectGroup: function (projectGroupId, status, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.GTFSFlexServiceApiFp(configuration).deleteService(projectGroupId, serviceId, status, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).deleteProjectGroup(projectGroupId, status, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
         /**
-         * Gets the GTFS Flex services in the TDEI system .
-         * @summary Gets the GTFS Flex services in the TDEI system
-         * @param {string} [tdei_service_id] Search by service Id.
-         * @param {string} [searchText] Search by service name.
-         * @param {string} [tdei_project_group_id] Owner project group id.
+         * Gets the project groups in the TDEI system.
+         * @summary Gets the project groups in the TDEI system
+         * @param {string} [tdei_project_group_id] Search by project group Id.
+         * @param {string} [searchText] Search by project group name.
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getService: function (tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options) {
+        getProjectGroup: function (tdei_project_group_id, searchText, bbox, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.GTFSFlexServiceApiFp(configuration).getService(tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
         /**
-         * Updates a GTFS flex service in the TDEI system.
-         * @summary Updates a GTFS flex service in the TDEI system
-         * @param {ServiceUpdate} body
-         * @param {string} projectGroupId Owner project group id.
+         * Gets the project group users in the TDEI system.
+         * @summary Gets the project group users in the TDEI system
+         * @param {string} projectGroupId Project group id for which users to be fetched
+         * @param {string} [searchText] Search by project group name.
+         * @param {string} [page_no] Page number to fetch
+         * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateService: function (body, projectGroupId, options) {
+        getProjectGroupUsers: function (projectGroupId, searchText, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.GTFSFlexServiceApiFp(configuration).updateService(body, projectGroupId, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
+                });
+            });
+        },
+        /**
+         * Updates an project group in the TDEI system.  Returns success if updated.
+         * @summary Updates an project group in the TDEI system
+         * @param {ProjectGroup} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateProjectGroup: function (body, options) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).updateProjectGroup(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
     };
 };
 /**
- * GTFSFlexServiceApi - object-oriented interface
+ * ProjectGroupApi - object-oriented interface
  * @export
- * @class GTFSFlexServiceApi
+ * @class ProjectGroupApi
  * @extends {BaseAPI}
  */
-var GTFSFlexServiceApi = /** @class */ (function (_super) {
-    __extends(GTFSFlexServiceApi, _super);
-    function GTFSFlexServiceApi() {
+var ProjectGroupApi = /** @class */ (function (_super) {
+    __extends(ProjectGroupApi, _super);
+    function ProjectGroupApi() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Creates a GTFS flex service in the TDEI system.Returns the id for the newly created flex service.
-     * @summary Creates a GTFS flex service in the TDEI system
-     * @param {Service} body
+     * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
+     * @summary Creates an project group in the TDEI system
+     * @param {ProjectGroup} body
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GTFSFlexServiceApi
+     * @memberof ProjectGroupApi
      */
-    GTFSFlexServiceApi.prototype.createService = function (body, options) {
+    ProjectGroupApi.prototype.createProjectGroup = function (body, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.GTFSFlexServiceApiFp(this.configuration).createService(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).createProjectGroup(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
     /**
-     * Activates/Deactives the service.
-     * @summary Activates/Deactives the service.
-     * @param {string} projectGroupId Owner project group id.
-     * @param {string} serviceId Service Id of the service to be Activated/Deactivated.
-     * @param {boolean} status Boolean flag to Activate/Deactivate service.
+     * Activates/Deactives the project group.
+     * @summary Activates/Deactives the project group.
+     * @param {string} projectGroupId projectGroupId of the project group to be Activated/Deactivated.
+     * @param {boolean} status Boolean flag to Activate/Deactivate project group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GTFSFlexServiceApi
+     * @memberof ProjectGroupApi
      */
-    GTFSFlexServiceApi.prototype.deleteService = function (projectGroupId, serviceId, status, options) {
+    ProjectGroupApi.prototype.deleteProjectGroup = function (projectGroupId, status, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.GTFSFlexServiceApiFp(this.configuration).deleteService(projectGroupId, serviceId, status, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).deleteProjectGroup(projectGroupId, status, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
     /**
-     * Gets the GTFS Flex services in the TDEI system .
-     * @summary Gets the GTFS Flex services in the TDEI system
-     * @param {string} [tdei_service_id] Search by service Id.
-     * @param {string} [searchText] Search by service name.
-     * @param {string} [tdei_project_group_id] Owner project group id.
+     * Gets the project groups in the TDEI system.
+     * @summary Gets the project groups in the TDEI system
+     * @param {string} [tdei_project_group_id] Search by project group Id.
+     * @param {string} [searchText] Search by project group name.
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GTFSFlexServiceApi
+     * @memberof ProjectGroupApi
      */
-    GTFSFlexServiceApi.prototype.getService = function (tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options) {
+    ProjectGroupApi.prototype.getProjectGroup = function (tdei_project_group_id, searchText, bbox, page_no, page_size, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.GTFSFlexServiceApiFp(this.configuration).getService(tdei_service_id, searchText, tdei_project_group_id, bbox, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
     /**
-     * Updates a GTFS flex service in the TDEI system.
-     * @summary Updates a GTFS flex service in the TDEI system
-     * @param {ServiceUpdate} body
-     * @param {string} projectGroupId Owner project group id.
+     * Gets the project group users in the TDEI system.
+     * @summary Gets the project group users in the TDEI system
+     * @param {string} projectGroupId Project group id for which users to be fetched
+     * @param {string} [searchText] Search by project group name.
+     * @param {string} [page_no] Page number to fetch
+     * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GTFSFlexServiceApi
+     * @memberof ProjectGroupApi
      */
-    GTFSFlexServiceApi.prototype.updateService = function (body, projectGroupId, options) {
+    ProjectGroupApi.prototype.getProjectGroupUsers = function (projectGroupId, searchText, page_no, page_size, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.GTFSFlexServiceApiFp(this.configuration).updateService(body, projectGroupId, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
-    return GTFSFlexServiceApi;
+    /**
+     * Updates an project group in the TDEI system.  Returns success if updated.
+     * @summary Updates an project group in the TDEI system
+     * @param {ProjectGroup} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectGroupApi
+     */
+    ProjectGroupApi.prototype.updateProjectGroup = function (body, options) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).updateProjectGroup(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+            });
+        });
+    };
+    return ProjectGroupApi;
 }(base_1.BaseAPI));
-exports.GTFSFlexServiceApi = GTFSFlexServiceApi;
+exports.ProjectGroupApi = ProjectGroupApi;

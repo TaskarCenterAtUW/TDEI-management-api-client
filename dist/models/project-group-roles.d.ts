@@ -10,27 +10,27 @@
  * Do not edit the class manually.
  */
 /**
- * Describes a user permissions.
+ * User associated project groups and roles.
  * @export
- * @interface RoleDetails
+ * @interface ProjectGroupRoles
  */
-export interface RoleDetails {
+export interface ProjectGroupRoles {
     /**
-     * Project group id to which user to be associated.
+     *
      * @type {string}
-     * @memberof RoleDetails
+     * @memberof ProjectGroupRoles
      */
-    tdei_project_group_id: string;
+    tdei_project_group_id?: string;
     /**
-     * Username represents user uniquely in the TDEI system.  User should be already registered in the TDEI system using [POST] /user API.
+     *
      * @type {string}
-     * @memberof RoleDetails
+     * @memberof ProjectGroupRoles
      */
-    user_name: string;
+    project_group_name?: string;
     /**
-     * List of roles to be assigned to the user.
+     * List of roles associated with project group.
      * @type {Array<string>}
-     * @memberof RoleDetails
+     * @memberof ProjectGroupRoles
      */
-    roles: Array<string>;
+    roles?: Array<string>;
 }

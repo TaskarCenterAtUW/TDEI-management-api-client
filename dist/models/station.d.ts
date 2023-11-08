@@ -23,11 +23,11 @@ export interface Station {
      */
     tdei_station_id?: string;
     /**
-     * Organization id of the station.
+     * Project group id of the station.
      * @type {string}
      * @memberof Station
      */
-    tdei_org_id: string;
+    tdei_project_group_id: string;
     /**
      * Name of the location. The ame should match the agency's rider-facing name for the location as printed on a timetable, published online, or represented on signage.
      * @type {string}
