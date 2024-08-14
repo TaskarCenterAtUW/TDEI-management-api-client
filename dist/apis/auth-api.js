@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -38,7 +40,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -82,7 +84,7 @@ var base_1 = require("../base");
  * AuthApi - axios parameter creator
  * @export
  */
-exports.AuthApiAxiosParamCreator = function (configuration) {
+var AuthApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
@@ -267,13 +269,76 @@ exports.AuthApiAxiosParamCreator = function (configuration) {
                 });
             });
         },
+        /**
+         * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+         * @summary Resets the user credential
+         * @param {ResetCredentialModel} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetCredentials: function (body, options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions, needsSerialization;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            // verify required parameter 'body' is not null or undefined
+                            if (body === null || body === undefined) {
+                                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling resetCredentials.');
+                            }
+                            localVarPath = "/api/v1/reset-credentials";
+                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), options);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 5];
+                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 2];
+                            return [4 /*yield*/, configuration.accessToken()];
+                        case 1:
+                            _a = _b.sent();
+                            return [3 /*break*/, 4];
+                        case 2: return [4 /*yield*/, configuration.accessToken];
+                        case 3:
+                            _a = _b.sent();
+                            _b.label = 4;
+                        case 4:
+                            accessToken = _a;
+                            localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+                            _b.label = 5;
+                        case 5:
+                            localVarHeaderParameter['Content-Type'] = 'application/json';
+                            query = new URLSearchParams(localVarUrlObj.search);
+                            for (key in localVarQueryParameter) {
+                                query.set(key, localVarQueryParameter[key]);
+                            }
+                            for (key in options.params) {
+                                query.set(key, options.params[key]);
+                            }
+                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                            needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+                            localVarRequestOptions.data = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+                            return [2 /*return*/, {
+                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                                    options: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
     };
 };
+exports.AuthApiAxiosParamCreator = AuthApiAxiosParamCreator;
 /**
  * AuthApi - functional programming interface
  * @export
  */
-exports.AuthApiFp = function (configuration) {
+var AuthApiFp = function (configuration) {
     return {
         /**
          * Authenticates the user to the TDEI system.  Returns access token.
@@ -287,7 +352,7 @@ exports.AuthApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.AuthApiAxiosParamCreator(configuration).authenticate(body, options)];
+                        case 0: return [4 /*yield*/, (0, exports.AuthApiAxiosParamCreator)(configuration).authenticate(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -312,7 +377,7 @@ exports.AuthApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.AuthApiAxiosParamCreator(configuration).getUserProfile(user_name, options)];
+                        case 0: return [4 /*yield*/, (0, exports.AuthApiAxiosParamCreator)(configuration).getUserProfile(user_name, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -337,7 +402,32 @@ exports.AuthApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.AuthApiAxiosParamCreator(configuration).refreshToken(refresh_token, options)];
+                        case 0: return [4 /*yield*/, (0, exports.AuthApiAxiosParamCreator)(configuration).refreshToken(refresh_token, options)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, function (axios, basePath) {
+                                    if (axios === void 0) { axios = axios_1.default; }
+                                    if (basePath === void 0) { basePath = base_1.BASE_PATH; }
+                                    var axiosRequestArgs = __assign(__assign({}, localVarAxiosArgs.options), { url: basePath + localVarAxiosArgs.url });
+                                    return axios.request(axiosRequestArgs);
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+         * @summary Resets the user credential
+         * @param {ResetCredentialModel} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetCredentials: function (body, options) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, exports.AuthApiAxiosParamCreator)(configuration).resetCredentials(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -352,11 +442,12 @@ exports.AuthApiFp = function (configuration) {
         },
     };
 };
+exports.AuthApiFp = AuthApiFp;
 /**
  * AuthApi - factory interface
  * @export
  */
-exports.AuthApiFactory = function (configuration, basePath, axios) {
+var AuthApiFactory = function (configuration, basePath, axios) {
     return {
         /**
          * Authenticates the user to the TDEI system.  Returns access token.
@@ -368,7 +459,7 @@ exports.AuthApiFactory = function (configuration, basePath, axios) {
         authenticate: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.AuthApiFp(configuration).authenticate(body, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.AuthApiFp)(configuration).authenticate(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -382,7 +473,7 @@ exports.AuthApiFactory = function (configuration, basePath, axios) {
         getUserProfile: function (user_name, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.AuthApiFp(configuration).getUserProfile(user_name, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.AuthApiFp)(configuration).getUserProfile(user_name, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -396,12 +487,27 @@ exports.AuthApiFactory = function (configuration, basePath, axios) {
         refreshToken: function (refresh_token, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.AuthApiFp(configuration).refreshToken(refresh_token, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.AuthApiFp)(configuration).refreshToken(refresh_token, options).then(function (request) { return request(axios, basePath); })];
+                });
+            });
+        },
+        /**
+         * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+         * @summary Resets the user credential
+         * @param {ResetCredentialModel} body
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetCredentials: function (body, options) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, (0, exports.AuthApiFp)(configuration).resetCredentials(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
     };
 };
+exports.AuthApiFactory = AuthApiFactory;
 /**
  * AuthApi - object-oriented interface
  * @export
@@ -425,7 +531,7 @@ var AuthApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.AuthApiFp(this.configuration).authenticate(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.AuthApiFp)(this.configuration).authenticate(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -441,7 +547,7 @@ var AuthApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.AuthApiFp(this.configuration).getUserProfile(user_name, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.AuthApiFp)(this.configuration).getUserProfile(user_name, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -457,7 +563,23 @@ var AuthApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.AuthApiFp(this.configuration).refreshToken(refresh_token, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.AuthApiFp)(this.configuration).refreshToken(refresh_token, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+            });
+        });
+    };
+    /**
+     * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+     * @summary Resets the user credential
+     * @param {ResetCredentialModel} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    AuthApi.prototype.resetCredentials = function (body, options) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, (0, exports.AuthApiFp)(this.configuration).resetCredentials(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };

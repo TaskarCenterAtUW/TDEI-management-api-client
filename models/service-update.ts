@@ -13,7 +13,7 @@
  */
 import { Polygon } from './polygon';
 /**
- * Describes a gtfs flex service update model.
+ * Describes a Service update model.
  * @export
  * @interface ServiceUpdate
  */

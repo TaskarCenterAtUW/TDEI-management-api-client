@@ -17,6 +17,7 @@ import { Configuration } from '../configuration';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { Login } from '../models';
+import { ResetCredentialModel } from '../models';
 import { Token } from '../models';
 import { UserProfile } from '../models';
 /**
@@ -177,6 +178,58 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+         * @summary Resets the user credential
+         * @param {ResetCredentialModel} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetCredentials: async (body: ResetCredentialModel, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling resetCredentials.');
+            }
+            const localVarPath = `/api/v1/reset-credentials`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication AuthorizationToken required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -228,6 +281,20 @@ export const AuthApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+         * @summary Resets the user credential
+         * @param {ResetCredentialModel} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async resetCredentials(body: ResetCredentialModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>> {
+            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).resetCredentials(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -266,6 +333,16 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          */
         async refreshToken(refresh_token: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Token>> {
             return AuthApiFp(configuration).refreshToken(refresh_token, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+         * @summary Resets the user credential
+         * @param {ResetCredentialModel} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async resetCredentials(body: ResetCredentialModel, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>> {
+            return AuthApiFp(configuration).resetCredentials(body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -309,5 +386,16 @@ export class AuthApi extends BaseAPI {
      */
     public async refreshToken(refresh_token: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Token>> {
         return AuthApiFp(this.configuration).refreshToken(refresh_token, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+     * @summary Resets the user credential
+     * @param {ResetCredentialModel} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    public async resetCredentials(body: ResetCredentialModel, options?: AxiosRequestConfig) : Promise<AxiosResponse<boolean>> {
+        return AuthApiFp(this.configuration).resetCredentials(body, options).then((request) => request(this.axios, this.basePath));
     }
 }

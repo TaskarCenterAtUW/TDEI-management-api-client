@@ -11,8 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */export * from './apis/auth-api';
-export * from './apis/gtfsflex-service-api';
-export * from './apis/gtfspathways-station-api';
 export * from './apis/project-group-api';
+export * from './apis/service-api';
 export * from './apis/user-management-api';
 

@@ -38,7 +38,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
         permission: async (body: RoleDetails, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body', 'Required parameter body was null or undefined when calling permission.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling permission.');
             }
             const localVarPath = `/api/v1/permission`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -47,7 +47,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions: AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options };
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -71,9 +71,9 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             }
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -90,7 +90,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
         projectGroupRoles: async (userId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             if (userId === null || userId === undefined) {
-                throw new RequiredError('userId', 'Required parameter userId was null or undefined when calling projectGroupRoles.');
+                throw new RequiredError('userId','Required parameter userId was null or undefined when calling projectGroupRoles.');
             }
             const localVarPath = `/api/v1/project-group-roles/{userId}`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
@@ -100,7 +100,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions: AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options };
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -122,7 +122,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             }
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -139,7 +139,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
         registerUser: async (body: Register, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body', 'Required parameter body was null or undefined when calling registerUser.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling registerUser.');
             }
             const localVarPath = `/api/v1/register`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -148,7 +148,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions: AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options };
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -172,9 +172,9 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             }
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -191,7 +191,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
         revokePermission: async (body: RoleDetails, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body', 'Required parameter body was null or undefined when calling revokePermission.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling revokePermission.');
             }
             const localVarPath = `/api/v1/permission/revoke`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -200,7 +200,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions: AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options };
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -224,9 +224,9 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             }
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -247,7 +247,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions: AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options };
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -269,7 +269,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
             }
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -283,7 +283,7 @@ export const UserManagementApiAxiosParamCreator = function (configuration?: Conf
  * UserManagementApi - functional programming interface
  * @export
  */
-export const UserManagementApiFp = function (configuration?: Configuration) {
+export const UserManagementApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
@@ -295,7 +295,7 @@ export const UserManagementApiFp = function (configuration?: Configuration) {
         async permission(body: RoleDetails, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Response>>> {
             const localVarAxiosArgs = await UserManagementApiAxiosParamCreator(configuration).permission(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs: AxiosRequestConfig = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
@@ -309,7 +309,7 @@ export const UserManagementApiFp = function (configuration?: Configuration) {
         async projectGroupRoles(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupRoles>>>> {
             const localVarAxiosArgs = await UserManagementApiAxiosParamCreator(configuration).projectGroupRoles(userId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs: AxiosRequestConfig = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
@@ -323,7 +323,7 @@ export const UserManagementApiFp = function (configuration?: Configuration) {
         async registerUser(body: Register, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RegisterResponse>>> {
             const localVarAxiosArgs = await UserManagementApiAxiosParamCreator(configuration).registerUser(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs: AxiosRequestConfig = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
@@ -337,7 +337,7 @@ export const UserManagementApiFp = function (configuration?: Configuration) {
         async revokePermission(body: RoleDetails, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Response>>> {
             const localVarAxiosArgs = await UserManagementApiAxiosParamCreator(configuration).revokePermission(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs: AxiosRequestConfig = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
@@ -350,7 +350,7 @@ export const UserManagementApiFp = function (configuration?: Configuration) {
         async roles(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<RoleResponse>>> {
             const localVarAxiosArgs = await UserManagementApiAxiosParamCreator(configuration).roles(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs: AxiosRequestConfig = { ...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url };
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
@@ -430,7 +430,7 @@ export class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    public async permission(body: RoleDetails, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>> {
+    public async permission(body: RoleDetails, options?: AxiosRequestConfig) : Promise<AxiosResponse<Response>> {
         return UserManagementApiFp(this.configuration).permission(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -441,7 +441,7 @@ export class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    public async projectGroupRoles(userId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupRoles>>> {
+    public async projectGroupRoles(userId: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<ProjectGroupRoles>>> {
         return UserManagementApiFp(this.configuration).projectGroupRoles(userId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -452,7 +452,7 @@ export class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    public async registerUser(body: Register, options?: AxiosRequestConfig): Promise<AxiosResponse<RegisterResponse>> {
+    public async registerUser(body: Register, options?: AxiosRequestConfig) : Promise<AxiosResponse<RegisterResponse>> {
         return UserManagementApiFp(this.configuration).registerUser(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -463,7 +463,7 @@ export class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    public async revokePermission(body: RoleDetails, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>> {
+    public async revokePermission(body: RoleDetails, options?: AxiosRequestConfig) : Promise<AxiosResponse<Response>> {
         return UserManagementApiFp(this.configuration).revokePermission(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -473,7 +473,7 @@ export class UserManagementApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    public async roles(options?: AxiosRequestConfig): Promise<AxiosResponse<RoleResponse>> {
+    public async roles(options?: AxiosRequestConfig) : Promise<AxiosResponse<RoleResponse>> {
         return UserManagementApiFp(this.configuration).roles(options).then((request) => request(this.axios, this.basePath));
     }
 }

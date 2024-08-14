@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -38,7 +40,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -82,7 +84,7 @@ var base_1 = require("../base");
  * UserManagementApi - axios parameter creator
  * @export
  */
-exports.UserManagementApiAxiosParamCreator = function (configuration) {
+var UserManagementApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
@@ -166,7 +168,7 @@ exports.UserManagementApiAxiosParamCreator = function (configuration) {
                                 throw new base_1.RequiredError('userId', 'Required parameter userId was null or undefined when calling projectGroupRoles.');
                             }
                             localVarPath = "/api/v1/project-group-roles/{userId}"
-                                .replace("{" + "userId" + "}", encodeURIComponent(String(userId)));
+                                .replace("{".concat("userId", "}"), encodeURIComponent(String(userId)));
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -387,11 +389,12 @@ exports.UserManagementApiAxiosParamCreator = function (configuration) {
         },
     };
 };
+exports.UserManagementApiAxiosParamCreator = UserManagementApiAxiosParamCreator;
 /**
  * UserManagementApi - functional programming interface
  * @export
  */
-exports.UserManagementApiFp = function (configuration) {
+var UserManagementApiFp = function (configuration) {
     return {
         /**
          * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
@@ -405,7 +408,7 @@ exports.UserManagementApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.UserManagementApiAxiosParamCreator(configuration).permission(body, options)];
+                        case 0: return [4 /*yield*/, (0, exports.UserManagementApiAxiosParamCreator)(configuration).permission(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -430,7 +433,7 @@ exports.UserManagementApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.UserManagementApiAxiosParamCreator(configuration).projectGroupRoles(userId, options)];
+                        case 0: return [4 /*yield*/, (0, exports.UserManagementApiAxiosParamCreator)(configuration).projectGroupRoles(userId, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -455,7 +458,7 @@ exports.UserManagementApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.UserManagementApiAxiosParamCreator(configuration).registerUser(body, options)];
+                        case 0: return [4 /*yield*/, (0, exports.UserManagementApiAxiosParamCreator)(configuration).registerUser(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -480,7 +483,7 @@ exports.UserManagementApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.UserManagementApiAxiosParamCreator(configuration).revokePermission(body, options)];
+                        case 0: return [4 /*yield*/, (0, exports.UserManagementApiAxiosParamCreator)(configuration).revokePermission(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -504,7 +507,7 @@ exports.UserManagementApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.UserManagementApiAxiosParamCreator(configuration).roles(options)];
+                        case 0: return [4 /*yield*/, (0, exports.UserManagementApiAxiosParamCreator)(configuration).roles(options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -519,11 +522,12 @@ exports.UserManagementApiFp = function (configuration) {
         },
     };
 };
+exports.UserManagementApiFp = UserManagementApiFp;
 /**
  * UserManagementApi - factory interface
  * @export
  */
-exports.UserManagementApiFactory = function (configuration, basePath, axios) {
+var UserManagementApiFactory = function (configuration, basePath, axios) {
     return {
         /**
          * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
@@ -535,7 +539,7 @@ exports.UserManagementApiFactory = function (configuration, basePath, axios) {
         permission: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.UserManagementApiFp(configuration).permission(body, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.UserManagementApiFp)(configuration).permission(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -549,7 +553,7 @@ exports.UserManagementApiFactory = function (configuration, basePath, axios) {
         projectGroupRoles: function (userId, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.UserManagementApiFp(configuration).projectGroupRoles(userId, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.UserManagementApiFp)(configuration).projectGroupRoles(userId, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -563,7 +567,7 @@ exports.UserManagementApiFactory = function (configuration, basePath, axios) {
         registerUser: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.UserManagementApiFp(configuration).registerUser(body, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.UserManagementApiFp)(configuration).registerUser(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -577,7 +581,7 @@ exports.UserManagementApiFactory = function (configuration, basePath, axios) {
         revokePermission: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.UserManagementApiFp(configuration).revokePermission(body, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.UserManagementApiFp)(configuration).revokePermission(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -590,12 +594,13 @@ exports.UserManagementApiFactory = function (configuration, basePath, axios) {
         roles: function (options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.UserManagementApiFp(configuration).roles(options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.UserManagementApiFp)(configuration).roles(options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
     };
 };
+exports.UserManagementApiFactory = UserManagementApiFactory;
 /**
  * UserManagementApi - object-oriented interface
  * @export
@@ -619,7 +624,7 @@ var UserManagementApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.UserManagementApiFp(this.configuration).permission(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.UserManagementApiFp)(this.configuration).permission(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -635,7 +640,7 @@ var UserManagementApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.UserManagementApiFp(this.configuration).projectGroupRoles(userId, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.UserManagementApiFp)(this.configuration).projectGroupRoles(userId, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -651,7 +656,7 @@ var UserManagementApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.UserManagementApiFp(this.configuration).registerUser(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.UserManagementApiFp)(this.configuration).registerUser(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -667,7 +672,7 @@ var UserManagementApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.UserManagementApiFp(this.configuration).revokePermission(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.UserManagementApiFp)(this.configuration).revokePermission(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -682,7 +687,7 @@ var UserManagementApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.UserManagementApiFp(this.configuration).roles(options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.UserManagementApiFp)(this.configuration).roles(options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };

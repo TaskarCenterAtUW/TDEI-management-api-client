@@ -13,6 +13,7 @@ import { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 import { RequestArgs, BaseAPI } from '../base';
 import { Login } from '../models';
+import { ResetCredentialModel } from '../models';
 import { Token } from '../models';
 import { UserProfile } from '../models';
 /**
@@ -44,6 +45,14 @@ export declare const AuthApiAxiosParamCreator: (configuration?: Configuration) =
      * @throws {RequiredError}
      */
     refreshToken: (refresh_token: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+     * @summary Resets the user credential
+     * @param {ResetCredentialModel} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetCredentials: (body: ResetCredentialModel, options?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * AuthApi - functional programming interface
@@ -74,6 +83,14 @@ export declare const AuthApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     refreshToken(refresh_token: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Token>>>;
+    /**
+     * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+     * @summary Resets the user credential
+     * @param {ResetCredentialModel} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetCredentials(body: ResetCredentialModel, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<boolean>>>;
 };
 /**
  * AuthApi - factory interface
@@ -104,6 +121,14 @@ export declare const AuthApiFactory: (configuration?: Configuration, basePath?: 
      * @throws {RequiredError}
      */
     refreshToken(refresh_token: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Token>>;
+    /**
+     * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+     * @summary Resets the user credential
+     * @param {ResetCredentialModel} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetCredentials(body: ResetCredentialModel, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>>;
 };
 /**
  * AuthApi - object-oriented interface
@@ -139,4 +164,13 @@ export declare class AuthApi extends BaseAPI {
      * @memberof AuthApi
      */
     refreshToken(refresh_token: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Token>>;
+    /**
+     * Resets the user credential.  Returns the boolean flag if the password is reset successfully.
+     * @summary Resets the user credential
+     * @param {ResetCredentialModel} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    resetCredentials(body: ResetCredentialModel, options?: AxiosRequestConfig): Promise<AxiosResponse<boolean>>;
 }

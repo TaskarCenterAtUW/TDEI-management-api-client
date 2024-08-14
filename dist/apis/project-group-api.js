@@ -3,10 +3,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -38,7 +40,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -82,7 +84,7 @@ var base_1 = require("../base");
  * ProjectGroupApi - axios parameter creator
  * @export
  */
-exports.ProjectGroupApiAxiosParamCreator = function (configuration) {
+var ProjectGroupApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
@@ -171,8 +173,8 @@ exports.ProjectGroupApiAxiosParamCreator = function (configuration) {
                                 throw new base_1.RequiredError('status', 'Required parameter status was null or undefined when calling deleteProjectGroup.');
                             }
                             localVarPath = "/api/v1/project-group/{projectGroupId}/active/{status}"
-                                .replace("{" + "projectGroupId" + "}", encodeURIComponent(String(projectGroupId)))
-                                .replace("{" + "status" + "}", encodeURIComponent(String(status)));
+                                .replace("{".concat("projectGroupId", "}"), encodeURIComponent(String(projectGroupId)))
+                                .replace("{".concat("status", "}"), encodeURIComponent(String(status)));
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -309,7 +311,7 @@ exports.ProjectGroupApiAxiosParamCreator = function (configuration) {
                                 throw new base_1.RequiredError('projectGroupId', 'Required parameter projectGroupId was null or undefined when calling getProjectGroupUsers.');
                             }
                             localVarPath = "/api/v1/project-group/{projectGroupId}/users"
-                                .replace("{" + "projectGroupId" + "}", encodeURIComponent(String(projectGroupId)));
+                                .replace("{".concat("projectGroupId", "}"), encodeURIComponent(String(projectGroupId)));
                             localVarUrlObj = new URL(localVarPath, 'https://example.com');
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -423,11 +425,12 @@ exports.ProjectGroupApiAxiosParamCreator = function (configuration) {
         },
     };
 };
+exports.ProjectGroupApiAxiosParamCreator = ProjectGroupApiAxiosParamCreator;
 /**
  * ProjectGroupApi - functional programming interface
  * @export
  */
-exports.ProjectGroupApiFp = function (configuration) {
+var ProjectGroupApiFp = function (configuration) {
     return {
         /**
          * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
@@ -441,7 +444,7 @@ exports.ProjectGroupApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).createProjectGroup(body, options)];
+                        case 0: return [4 /*yield*/, (0, exports.ProjectGroupApiAxiosParamCreator)(configuration).createProjectGroup(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -467,7 +470,7 @@ exports.ProjectGroupApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).deleteProjectGroup(projectGroupId, status, options)];
+                        case 0: return [4 /*yield*/, (0, exports.ProjectGroupApiAxiosParamCreator)(configuration).deleteProjectGroup(projectGroupId, status, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -496,7 +499,7 @@ exports.ProjectGroupApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options)];
+                        case 0: return [4 /*yield*/, (0, exports.ProjectGroupApiAxiosParamCreator)(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -524,7 +527,7 @@ exports.ProjectGroupApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options)];
+                        case 0: return [4 /*yield*/, (0, exports.ProjectGroupApiAxiosParamCreator)(configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -549,7 +552,7 @@ exports.ProjectGroupApiFp = function (configuration) {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, exports.ProjectGroupApiAxiosParamCreator(configuration).updateProjectGroup(body, options)];
+                        case 0: return [4 /*yield*/, (0, exports.ProjectGroupApiAxiosParamCreator)(configuration).updateProjectGroup(body, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -564,11 +567,12 @@ exports.ProjectGroupApiFp = function (configuration) {
         },
     };
 };
+exports.ProjectGroupApiFp = ProjectGroupApiFp;
 /**
  * ProjectGroupApi - factory interface
  * @export
  */
-exports.ProjectGroupApiFactory = function (configuration, basePath, axios) {
+var ProjectGroupApiFactory = function (configuration, basePath, axios) {
     return {
         /**
          * Creates an project group in the TDEI system.  Returns the id for the newly created project group.
@@ -580,7 +584,7 @@ exports.ProjectGroupApiFactory = function (configuration, basePath, axios) {
         createProjectGroup: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).createProjectGroup(body, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.ProjectGroupApiFp)(configuration).createProjectGroup(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -595,7 +599,7 @@ exports.ProjectGroupApiFactory = function (configuration, basePath, axios) {
         deleteProjectGroup: function (projectGroupId, status, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).deleteProjectGroup(projectGroupId, status, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.ProjectGroupApiFp)(configuration).deleteProjectGroup(projectGroupId, status, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -613,7 +617,7 @@ exports.ProjectGroupApiFactory = function (configuration, basePath, axios) {
         getProjectGroup: function (tdei_project_group_id, searchText, bbox, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.ProjectGroupApiFp)(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -630,7 +634,7 @@ exports.ProjectGroupApiFactory = function (configuration, basePath, axios) {
         getProjectGroupUsers: function (projectGroupId, searchText, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.ProjectGroupApiFp)(configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -644,12 +648,13 @@ exports.ProjectGroupApiFactory = function (configuration, basePath, axios) {
         updateProjectGroup: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, exports.ProjectGroupApiFp(configuration).updateProjectGroup(body, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.ProjectGroupApiFp)(configuration).updateProjectGroup(body, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
     };
 };
+exports.ProjectGroupApiFactory = ProjectGroupApiFactory;
 /**
  * ProjectGroupApi - object-oriented interface
  * @export
@@ -673,7 +678,7 @@ var ProjectGroupApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).createProjectGroup(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.ProjectGroupApiFp)(this.configuration).createProjectGroup(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -690,7 +695,7 @@ var ProjectGroupApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).deleteProjectGroup(projectGroupId, status, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.ProjectGroupApiFp)(this.configuration).deleteProjectGroup(projectGroupId, status, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -710,7 +715,7 @@ var ProjectGroupApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.ProjectGroupApiFp)(this.configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -729,7 +734,7 @@ var ProjectGroupApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.ProjectGroupApiFp)(this.configuration).getProjectGroupUsers(projectGroupId, searchText, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
@@ -745,7 +750,7 @@ var ProjectGroupApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, exports.ProjectGroupApiFp(this.configuration).updateProjectGroup(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.ProjectGroupApiFp)(this.configuration).updateProjectGroup(body, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };

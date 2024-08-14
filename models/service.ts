@@ -13,7 +13,7 @@
  */
 import { Polygon } from './polygon';
 /**
- * Describes a gtfs flex service.
+ * Describes a Service.
  * @export
  * @interface Service
  */
@@ -29,7 +29,7 @@ export interface Service {
      * @type {string}
      * @memberof Service
      */
-    tdei_project_group_id?: string;
+    tdei_project_group_id: string;
     /**
      * Name of the service.
      * @type {string}
@@ -37,9 +37,26 @@ export interface Service {
      */
     service_name: string;
     /**
+     * Service type
+     * @type {string}
+     * @memberof Service
+     */
+    service_type: ServiceServiceTypeEnum;
+    /**
      * 
      * @type {Polygon}
      * @memberof Service
      */
     polygon?: Polygon;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ServiceServiceTypeEnum {
+    Flex = 'flex',
+    Pathways = 'pathways',
+    Osw = 'osw'
+}
+
