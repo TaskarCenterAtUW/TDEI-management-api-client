@@ -46,15 +46,16 @@ export declare const ProjectGroupApiAxiosParamCreator: (configuration?: Configur
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getProjectGroup: (tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getProjectGroup: (tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Gets the project group users in the TDEI system.
      * @summary Gets the project group users in the TDEI system
      * @param {string} projectGroupId Project group id for which users to be fetched
-     * @param {string} [searchText] Search by project group name.
+     * @param {string} [searchText] Search by first_name, last_name or username.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
@@ -100,15 +101,16 @@ export declare const ProjectGroupApiFp: (configuration?: Configuration) => {
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupList>>>>;
+    getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupList>>>>;
     /**
      * Gets the project group users in the TDEI system.
      * @summary Gets the project group users in the TDEI system
      * @param {string} projectGroupId Project group id for which users to be fetched
-     * @param {string} [searchText] Search by project group name.
+     * @param {string} [searchText] Search by first_name, last_name or username.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
@@ -154,15 +156,16 @@ export declare const ProjectGroupApiFactory: (configuration?: Configuration, bas
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupList>>>;
+    getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupList>>>;
     /**
      * Gets the project group users in the TDEI system.
      * @summary Gets the project group users in the TDEI system
      * @param {string} projectGroupId Project group id for which users to be fetched
-     * @param {string} [searchText] Search by project group name.
+     * @param {string} [searchText] Search by first_name, last_name or username.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
@@ -212,16 +215,17 @@ export declare class ProjectGroupApi extends BaseAPI {
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectGroupApi
      */
-    getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupList>>>;
+    getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupList>>>;
     /**
      * Gets the project group users in the TDEI system.
      * @summary Gets the project group users in the TDEI system
      * @param {string} projectGroupId Project group id for which users to be fetched
-     * @param {string} [searchText] Search by project group name.
+     * @param {string} [searchText] Search by first_name, last_name or username.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.

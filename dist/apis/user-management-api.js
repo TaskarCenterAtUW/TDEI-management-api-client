@@ -88,7 +88,61 @@ var UserManagementApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
-         * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+         * Downloads the tdei user details in CSV format.
+         * @summary Downloads the tdei user details in CSV format
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadUsers: function (options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            localVarPath = "/api/v1/users/download";
+                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 5];
+                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 2];
+                            return [4 /*yield*/, configuration.accessToken()];
+                        case 1:
+                            _a = _b.sent();
+                            return [3 /*break*/, 4];
+                        case 2: return [4 /*yield*/, configuration.accessToken];
+                        case 3:
+                            _a = _b.sent();
+                            _b.label = 4;
+                        case 4:
+                            accessToken = _a;
+                            localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+                            _b.label = 5;
+                        case 5:
+                            query = new URLSearchParams(localVarUrlObj.search);
+                            for (key in localVarQueryParameter) {
+                                query.set(key, localVarQueryParameter[key]);
+                            }
+                            for (key in options.params) {
+                                query.set(key, options.params[key]);
+                            }
+                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+                            return [2 /*return*/, {
+                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                                    options: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true. Empty permissions array will remove a user from Project Group.
          * @summary Associates a user with the project group and permissions in the TDEI system
          * @param {RoleDetails} body
          * @param {*} [options] Override http request option.
@@ -150,13 +204,16 @@ var UserManagementApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * Gets the user associated project groups with roles.
+         * Gets the user associated project groups with roles.Restricted to logged in user project groups and roles.
          * @summary Gets the user associated project groups with roles.
          * @param {string} userId User id for which project groups to be fetched
+         * @param {string} [searchText] Search by project group name.
+         * @param {string} [page_no] Page number to fetch
+         * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectGroupRoles: function (userId, options) {
+        projectGroupRoles: function (userId, searchText, page_no, page_size, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions;
@@ -191,6 +248,15 @@ var UserManagementApiAxiosParamCreator = function (configuration) {
                             localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
                             _b.label = 5;
                         case 5:
+                            if (searchText !== undefined) {
+                                localVarQueryParameter['searchText'] = searchText;
+                            }
+                            if (page_no !== undefined) {
+                                localVarQueryParameter['page_no'] = page_no;
+                            }
+                            if (page_size !== undefined) {
+                                localVarQueryParameter['page_size'] = page_size;
+                            }
                             query = new URLSearchParams(localVarUrlObj.search);
                             for (key in localVarQueryParameter) {
                                 query.set(key, localVarQueryParameter[key]);
@@ -397,7 +463,31 @@ exports.UserManagementApiAxiosParamCreator = UserManagementApiAxiosParamCreator;
 var UserManagementApiFp = function (configuration) {
     return {
         /**
-         * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+         * Downloads the tdei user details in CSV format.
+         * @summary Downloads the tdei user details in CSV format
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadUsers: function (options) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, exports.UserManagementApiAxiosParamCreator)(configuration).downloadUsers(options)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, function (axios, basePath) {
+                                    if (axios === void 0) { axios = axios_1.default; }
+                                    if (basePath === void 0) { basePath = base_1.BASE_PATH; }
+                                    var axiosRequestArgs = __assign(__assign({}, localVarAxiosArgs.options), { url: basePath + localVarAxiosArgs.url });
+                                    return axios.request(axiosRequestArgs);
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true. Empty permissions array will remove a user from Project Group.
          * @summary Associates a user with the project group and permissions in the TDEI system
          * @param {RoleDetails} body
          * @param {*} [options] Override http request option.
@@ -422,18 +512,21 @@ var UserManagementApiFp = function (configuration) {
             });
         },
         /**
-         * Gets the user associated project groups with roles.
+         * Gets the user associated project groups with roles.Restricted to logged in user project groups and roles.
          * @summary Gets the user associated project groups with roles.
          * @param {string} userId User id for which project groups to be fetched
+         * @param {string} [searchText] Search by project group name.
+         * @param {string} [page_no] Page number to fetch
+         * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectGroupRoles: function (userId, options) {
+        projectGroupRoles: function (userId, searchText, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, exports.UserManagementApiAxiosParamCreator)(configuration).projectGroupRoles(userId, options)];
+                        case 0: return [4 /*yield*/, (0, exports.UserManagementApiAxiosParamCreator)(configuration).projectGroupRoles(userId, searchText, page_no, page_size, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -530,7 +623,20 @@ exports.UserManagementApiFp = UserManagementApiFp;
 var UserManagementApiFactory = function (configuration, basePath, axios) {
     return {
         /**
-         * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+         * Downloads the tdei user details in CSV format.
+         * @summary Downloads the tdei user details in CSV format
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        downloadUsers: function (options) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, (0, exports.UserManagementApiFp)(configuration).downloadUsers(options).then(function (request) { return request(axios, basePath); })];
+                });
+            });
+        },
+        /**
+         * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true. Empty permissions array will remove a user from Project Group.
          * @summary Associates a user with the project group and permissions in the TDEI system
          * @param {RoleDetails} body
          * @param {*} [options] Override http request option.
@@ -544,16 +650,19 @@ var UserManagementApiFactory = function (configuration, basePath, axios) {
             });
         },
         /**
-         * Gets the user associated project groups with roles.
+         * Gets the user associated project groups with roles.Restricted to logged in user project groups and roles.
          * @summary Gets the user associated project groups with roles.
          * @param {string} userId User id for which project groups to be fetched
+         * @param {string} [searchText] Search by project group name.
+         * @param {string} [page_no] Page number to fetch
+         * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectGroupRoles: function (userId, options) {
+        projectGroupRoles: function (userId, searchText, page_no, page_size, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, (0, exports.UserManagementApiFp)(configuration).projectGroupRoles(userId, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.UserManagementApiFp)(configuration).projectGroupRoles(userId, searchText, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -613,7 +722,22 @@ var UserManagementApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * Downloads the tdei user details in CSV format.
+     * @summary Downloads the tdei user details in CSV format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserManagementApi
+     */
+    UserManagementApi.prototype.downloadUsers = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, (0, exports.UserManagementApiFp)(this.configuration).downloadUsers(options).then(function (request) { return request(_this.axios, _this.basePath); })];
+            });
+        });
+    };
+    /**
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true. Empty permissions array will remove a user from Project Group.
      * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
@@ -629,18 +753,21 @@ var UserManagementApi = /** @class */ (function (_super) {
         });
     };
     /**
-     * Gets the user associated project groups with roles.
+     * Gets the user associated project groups with roles.Restricted to logged in user project groups and roles.
      * @summary Gets the user associated project groups with roles.
      * @param {string} userId User id for which project groups to be fetched
+     * @param {string} [searchText] Search by project group name.
+     * @param {string} [page_no] Page number to fetch
+     * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    UserManagementApi.prototype.projectGroupRoles = function (userId, options) {
+    UserManagementApi.prototype.projectGroupRoles = function (userId, searchText, page_no, page_size, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, (0, exports.UserManagementApiFp)(this.configuration).projectGroupRoles(userId, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.UserManagementApiFp)(this.configuration).projectGroupRoles(userId, searchText, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };

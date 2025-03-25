@@ -48,10 +48,11 @@ export declare const ServiceApiAxiosParamCreator: (configuration?: Configuration
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getService: (tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getService: (tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Updates a Service in the TDEI system.
      * @summary Updates a Service in the TDEI system
@@ -95,10 +96,11 @@ export declare const ServiceApiFp: (configuration?: Configuration) => {
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>>;
+    getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>>;
     /**
      * Updates a Service in the TDEI system.
      * @summary Updates a Service in the TDEI system
@@ -142,10 +144,11 @@ export declare const ServiceApiFactory: (configuration?: Configuration, basePath
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
+    getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
     /**
      * Updates a Service in the TDEI system.
      * @summary Updates a Service in the TDEI system
@@ -193,11 +196,12 @@ export declare class ServiceApi extends BaseAPI {
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ServiceApi
      */
-    getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
+    getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>>;
     /**
      * Updates a Service in the TDEI system.
      * @summary Updates a Service in the TDEI system
