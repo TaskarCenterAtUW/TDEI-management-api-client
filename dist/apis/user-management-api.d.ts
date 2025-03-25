@@ -24,7 +24,14 @@ import { RoleResponse } from '../models';
  */
 export declare const UserManagementApiAxiosParamCreator: (configuration?: Configuration) => {
     /**
-     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * Downloads the tdei user details in CSV format.
+     * @summary Downloads the tdei user details in CSV format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    downloadUsers: (options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true. Empty permissions array will remove a user from Project Group.
      * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
@@ -32,13 +39,16 @@ export declare const UserManagementApiAxiosParamCreator: (configuration?: Config
      */
     permission: (body: RoleDetails, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
-     * Gets the user associated project groups with roles.
+     * Gets the user associated project groups with roles.Restricted to logged in user project groups and roles.
      * @summary Gets the user associated project groups with roles.
      * @param {string} userId User id for which project groups to be fetched
+     * @param {string} [searchText] Search by project group name.
+     * @param {string} [page_no] Page number to fetch
+     * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    projectGroupRoles: (userId: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+    projectGroupRoles: (userId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Registers the user to the TDEI system.  Returns new User object.
      * @summary Registers the user to the TDEI system
@@ -69,7 +79,14 @@ export declare const UserManagementApiAxiosParamCreator: (configuration?: Config
  */
 export declare const UserManagementApiFp: (configuration?: Configuration) => {
     /**
-     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * Downloads the tdei user details in CSV format.
+     * @summary Downloads the tdei user details in CSV format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    downloadUsers(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Blob>>>;
+    /**
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true. Empty permissions array will remove a user from Project Group.
      * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
@@ -77,13 +94,16 @@ export declare const UserManagementApiFp: (configuration?: Configuration) => {
      */
     permission(body: RoleDetails, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Response>>>;
     /**
-     * Gets the user associated project groups with roles.
+     * Gets the user associated project groups with roles.Restricted to logged in user project groups and roles.
      * @summary Gets the user associated project groups with roles.
      * @param {string} userId User id for which project groups to be fetched
+     * @param {string} [searchText] Search by project group name.
+     * @param {string} [page_no] Page number to fetch
+     * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    projectGroupRoles(userId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupRoles>>>>;
+    projectGroupRoles(userId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupRoles>>>>;
     /**
      * Registers the user to the TDEI system.  Returns new User object.
      * @summary Registers the user to the TDEI system
@@ -114,7 +134,14 @@ export declare const UserManagementApiFp: (configuration?: Configuration) => {
  */
 export declare const UserManagementApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
     /**
-     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * Downloads the tdei user details in CSV format.
+     * @summary Downloads the tdei user details in CSV format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    downloadUsers(options?: AxiosRequestConfig): Promise<AxiosResponse<Blob>>;
+    /**
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true. Empty permissions array will remove a user from Project Group.
      * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
@@ -122,13 +149,16 @@ export declare const UserManagementApiFactory: (configuration?: Configuration, b
      */
     permission(body: RoleDetails, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>>;
     /**
-     * Gets the user associated project groups with roles.
+     * Gets the user associated project groups with roles.Restricted to logged in user project groups and roles.
      * @summary Gets the user associated project groups with roles.
      * @param {string} userId User id for which project groups to be fetched
+     * @param {string} [searchText] Search by project group name.
+     * @param {string} [page_no] Page number to fetch
+     * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    projectGroupRoles(userId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupRoles>>>;
+    projectGroupRoles(userId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupRoles>>>;
     /**
      * Registers the user to the TDEI system.  Returns new User object.
      * @summary Registers the user to the TDEI system
@@ -161,7 +191,15 @@ export declare const UserManagementApiFactory: (configuration?: Configuration, b
  */
 export declare class UserManagementApi extends BaseAPI {
     /**
-     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true.
+     * Downloads the tdei user details in CSV format.
+     * @summary Downloads the tdei user details in CSV format
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserManagementApi
+     */
+    downloadUsers(options?: AxiosRequestConfig): Promise<AxiosResponse<Blob>>;
+    /**
+     * Associates a user with the project group and permissions in the TDEI system. Returns the boolean flag true. Empty permissions array will remove a user from Project Group.
      * @summary Associates a user with the project group and permissions in the TDEI system
      * @param {RoleDetails} body
      * @param {*} [options] Override http request option.
@@ -170,14 +208,17 @@ export declare class UserManagementApi extends BaseAPI {
      */
     permission(body: RoleDetails, options?: AxiosRequestConfig): Promise<AxiosResponse<Response>>;
     /**
-     * Gets the user associated project groups with roles.
+     * Gets the user associated project groups with roles.Restricted to logged in user project groups and roles.
      * @summary Gets the user associated project groups with roles.
      * @param {string} userId User id for which project groups to be fetched
+     * @param {string} [searchText] Search by project group name.
+     * @param {string} [page_no] Page number to fetch
+     * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserManagementApi
      */
-    projectGroupRoles(userId: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupRoles>>>;
+    projectGroupRoles(userId: string, searchText?: string, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupRoles>>>;
     /**
      * Registers the user to the TDEI system.  Returns new User object.
      * @summary Registers the user to the TDEI system

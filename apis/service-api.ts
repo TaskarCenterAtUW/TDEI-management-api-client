@@ -109,7 +109,7 @@ export const ServiceApiAxiosParamCreator = function (configuration?: Configurati
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -148,10 +148,11 @@ export const ServiceApiAxiosParamCreator = function (configuration?: Configurati
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getService: async (tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getService: async (tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/service`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -198,6 +199,10 @@ export const ServiceApiAxiosParamCreator = function (configuration?: Configurati
 
             if (page_size !== undefined) {
                 localVarQueryParameter['page_size'] = page_size;
+            }
+
+            if (show_inactive !== undefined) {
+                localVarQueryParameter['show_inactive'] = show_inactive;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -323,11 +328,12 @@ export const ServiceApiFp = function(configuration?: Configuration) {
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>> {
-            const localVarAxiosArgs = await ServiceApiAxiosParamCreator(configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options);
+        async getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Service>>>> {
+            const localVarAxiosArgs = await ServiceApiAxiosParamCreator(configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -389,11 +395,12 @@ export const ServiceApiFactory = function (configuration?: Configuration, basePa
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>> {
-            return ServiceApiFp(configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
+        async getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Service>>> {
+            return ServiceApiFp(configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a Service in the TDEI system.
@@ -450,12 +457,13 @@ export class ServiceApi extends BaseAPI {
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ServiceApi
      */
-    public async getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Service>>> {
-        return ServiceApiFp(this.configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
+    public async getService(tdei_service_id?: string, searchText?: string, service_type?: string, tdei_project_group_id?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Service>>> {
+        return ServiceApiFp(this.configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Updates a Service in the TDEI system.

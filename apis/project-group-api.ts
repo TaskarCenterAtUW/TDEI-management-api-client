@@ -104,7 +104,7 @@ export const ProjectGroupApiAxiosParamCreator = function (configuration?: Config
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -141,10 +141,11 @@ export const ProjectGroupApiAxiosParamCreator = function (configuration?: Config
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProjectGroup: async (tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProjectGroup: async (tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/project-group`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -185,6 +186,10 @@ export const ProjectGroupApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['page_size'] = page_size;
             }
 
+            if (show_inactive !== undefined) {
+                localVarQueryParameter['show_inactive'] = show_inactive;
+            }
+
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -205,7 +210,7 @@ export const ProjectGroupApiAxiosParamCreator = function (configuration?: Config
          * Gets the project group users in the TDEI system.
          * @summary Gets the project group users in the TDEI system 
          * @param {string} projectGroupId Project group id for which users to be fetched
-         * @param {string} [searchText] Search by project group name.
+         * @param {string} [searchText] Search by first_name, last_name or username.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
@@ -363,11 +368,12 @@ export const ProjectGroupApiFp = function(configuration?: Configuration) {
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupList>>>> {
-            const localVarAxiosArgs = await ProjectGroupApiAxiosParamCreator(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options);
+        async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<ProjectGroupList>>>> {
+            const localVarAxiosArgs = await ProjectGroupApiAxiosParamCreator(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, show_inactive, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -377,7 +383,7 @@ export const ProjectGroupApiFp = function(configuration?: Configuration) {
          * Gets the project group users in the TDEI system.
          * @summary Gets the project group users in the TDEI system 
          * @param {string} projectGroupId Project group id for which users to be fetched
-         * @param {string} [searchText] Search by project group name.
+         * @param {string} [searchText] Search by first_name, last_name or username.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
@@ -442,17 +448,18 @@ export const ProjectGroupApiFactory = function (configuration?: Configuration, b
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupList>>> {
-            return ProjectGroupApiFp(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then((request) => request(axios, basePath));
+        async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<ProjectGroupList>>> {
+            return ProjectGroupApiFp(configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, show_inactive, options).then((request) => request(axios, basePath));
         },
         /**
          * Gets the project group users in the TDEI system.
          * @summary Gets the project group users in the TDEI system 
          * @param {string} projectGroupId Project group id for which users to be fetched
-         * @param {string} [searchText] Search by project group name.
+         * @param {string} [searchText] Search by first_name, last_name or username.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
          * @param {*} [options] Override http request option.
@@ -512,18 +519,19 @@ export class ProjectGroupApi extends BaseAPI {
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectGroupApi
      */
-    public async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<ProjectGroupList>>> {
-        return ProjectGroupApiFp(this.configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, options).then((request) => request(this.axios, this.basePath));
+    public async getProjectGroup(tdei_project_group_id?: string, searchText?: string, bbox?: Array<number>, page_no?: string, page_size?: string, show_inactive?: boolean, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<ProjectGroupList>>> {
+        return ProjectGroupApiFp(this.configuration).getProjectGroup(tdei_project_group_id, searchText, bbox, page_no, page_size, show_inactive, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Gets the project group users in the TDEI system.
      * @summary Gets the project group users in the TDEI system 
      * @param {string} projectGroupId Project group id for which users to be fetched
-     * @param {string} [searchText] Search by project group name.
+     * @param {string} [searchText] Search by first_name, last_name or username.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
      * @param {*} [options] Override http request option.

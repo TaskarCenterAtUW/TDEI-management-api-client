@@ -185,7 +185,7 @@ var ServiceApiAxiosParamCreator = function (configuration) {
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
                             }
-                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), options);
+                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), options);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
                             if (!(configuration && configuration.accessToken)) return [3 /*break*/, 5];
@@ -231,10 +231,11 @@ var ServiceApiAxiosParamCreator = function (configuration) {
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getService: function (tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options) {
+        getService: function (tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, accessToken, _a, query, key, key, headersFromBaseOptions;
@@ -284,6 +285,9 @@ var ServiceApiAxiosParamCreator = function (configuration) {
                             }
                             if (page_size !== undefined) {
                                 localVarQueryParameter['page_size'] = page_size;
+                            }
+                            if (show_inactive !== undefined) {
+                                localVarQueryParameter['show_inactive'] = show_inactive;
                             }
                             query = new URLSearchParams(localVarUrlObj.search);
                             for (key in localVarQueryParameter) {
@@ -442,15 +446,16 @@ var ServiceApiFp = function (configuration) {
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getService: function (tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options) {
+        getService: function (tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, exports.ServiceApiAxiosParamCreator)(configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options)];
+                        case 0: return [4 /*yield*/, (0, exports.ServiceApiAxiosParamCreator)(configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, function (axios, basePath) {
@@ -538,13 +543,14 @@ var ServiceApiFactory = function (configuration, basePath, axios) {
          * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
          * @param {string} [page_no] Page number to fetch
          * @param {string} [page_size] Total records to fetch.
+         * @param {boolean} [show_inactive] Show inactive project groups
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getService: function (tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options) {
+        getService: function (tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options) {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, (0, exports.ServiceApiFp)(configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options).then(function (request) { return request(axios, basePath); })];
+                    return [2 /*return*/, (0, exports.ServiceApiFp)(configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options).then(function (request) { return request(axios, basePath); })];
                 });
             });
         },
@@ -621,15 +627,16 @@ var ServiceApi = /** @class */ (function (_super) {
      * @param {Array<number>} [bbox] A bounding box which specifies the area to be searched. A bounding box is specified by a string providing the lat/lon coordinates of the corners of the bounding box. Coordinate should be specified as west, south, east, north.
      * @param {string} [page_no] Page number to fetch
      * @param {string} [page_size] Total records to fetch.
+     * @param {boolean} [show_inactive] Show inactive project groups
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ServiceApi
      */
-    ServiceApi.prototype.getService = function (tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options) {
+    ServiceApi.prototype.getService = function (tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                return [2 /*return*/, (0, exports.ServiceApiFp)(this.configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, options).then(function (request) { return request(_this.axios, _this.basePath); })];
+                return [2 /*return*/, (0, exports.ServiceApiFp)(this.configuration).getService(tdei_service_id, searchText, service_type, tdei_project_group_id, bbox, page_no, page_size, show_inactive, options).then(function (request) { return request(_this.axios, _this.basePath); })];
             });
         });
     };
