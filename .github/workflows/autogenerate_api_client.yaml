@@ -9,13 +9,40 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          # needed by "gh pr create"
           fetch-depth: 0
+
+      - name: Check If API Specification Changed in Last 10 Minutes
+        id: check_changes
+        run: |
+          FILE_PATH="src/assets/user-management-spec.json"
+          REPO="TaskarCenterAtUW/TDEI-user-management-ts"
+          BRANCH="dev"
+
+          # Fetch latest commit timestamp for the file
+          LATEST_COMMIT_TIMESTAMP=$(curl -s "https://api.github.com/repos/$REPO/commits?path=$FILE_PATH&sha=$BRANCH" | jq -r '.[0].commit.committer.date')
+
+          # Convert timestamp to UNIX format
+          LATEST_CHANGE_TIME=$(date -d "$LATEST_COMMIT_TIMESTAMP" +%s)
+          CURRENT_TIME=$(date +%s)
+          TIME_DIFF=$((CURRENT_TIME - LATEST_CHANGE_TIME))
+
+          if [ "$TIME_DIFF" -lt 600 ]; then
+            echo "API specification changed in the last 10 minutes."
+            echo "skip=false" >> $GITHUB_ENV
+          else
+            echo "No recent changes in API specification."
+            echo "skip=true" >> $GITHUB_ENV
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Generate API Client
+        if: env.skip == 'false'
         run: |
           bash autogenerate_api_client.sh https://raw.githubusercontent.com/TaskarCenterAtUW/TDEI-user-management-ts/dev/src/assets/user-management-spec.json
 
       - name: Run Bash Script
+        if: env.skip == 'false'
         run: |
           if which git >/dev/null 2>&1; then
             if git rev-parse --verify feature-generate-api-client >/dev/null 2>&1; then
